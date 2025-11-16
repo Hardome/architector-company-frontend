@@ -192,7 +192,7 @@ export default defineConfig([
         }],
 
         "max-nested-callbacks": [2, 2],
-        "new-cap": 2,
+        // "new-cap": 2,
         "no-lonely-if": 2,
         "no-multi-assign": 2,
 

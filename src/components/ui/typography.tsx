@@ -1,19 +1,20 @@
-import React, { forwardRef, JSX } from 'react';
-import { cn } from '../../lib/utils';
+import React, {forwardRef, JSX} from 'react';
+
+import {cn} from '@/lib/utils';
 
 const createComponent = <T extends HTMLElement>(
   tag: keyof JSX.IntrinsicElements,
   defaultClassName: string,
   displayName: string
 ) => {
-  const Component = forwardRef<T, React.HTMLAttributes<T>>((props, ref) => {
-    return React.createElement(
-      tag,
-      { ...props, ref, className: cn(defaultClassName, props.className) },
-      props.children
-    );
-  });
+  const Component = forwardRef<T, React.HTMLAttributes<T>>((props, ref) => React.createElement(
+    tag,
+    {...props, ref, className: cn(defaultClassName, props.className)},
+    props.children
+  ));
+
   Component.displayName = displayName;
+
   return Component;
 };
 

@@ -1,14 +1,17 @@
-import LoopedVideoSection from './LoopedVideoSection';
+import AboutSection from './Sections/About';
+import LoopedVideoSection from './Sections/LoopedVideo';
+import MediaSection from './Sections/Media';
+import ProjectsSection from './Sections/Projects';
 
 export default function Home() {
   return (
-    <div className={'min-h-screen bg-background'}>
+    <main className={'min-h-screen bg-background'}>
       <LoopedVideoSection />
-      {/* <AboutVillageSection />
+      <AboutSection />
       <MediaSection />
       <ProjectsSection />
-      <HowToBuySection />
+      {/*HowToBuySection />
       <DocumentsSection /> */}
-    </div>
+    </main>
   );
 }

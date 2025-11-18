@@ -428,7 +428,7 @@ export default defineConfig([
 
         "simple-import-sort/imports": ["error", {
             groups: [["^react", "^@?\\w", "^[a-z]"], ["^\\u0000"], [
-                "^(@components|@lib|@hooks)(/.*|$)",
+                "^(@/components|@/lib|@/hooks)(/.*|$)",
             ], ["^\\.\\.(?!/?$)", "^\\.\\./?$"], ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"], ["^.+\\.s?css$"]],
         }],
 

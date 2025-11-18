@@ -1,9 +1,10 @@
 import type {Metadata} from 'next';
 import {Roboto} from 'next/font/google';
 
-import './globals.css';
-
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+
+import './globals.css';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -12,8 +13,9 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: 'СК Архитектор',
-  description: 'Строительная компания Архитектор'
+  title: 'ЛесПарк - Жилой посёлок в Тюмени',
+  // eslint-disable-next-line max-len
+  description: 'ЖК ЛесПарк - это современный посёлок с современными домами и инфраструктурой для комфортного проживания'
 };
 
 export default function RootLayout({
@@ -26,6 +28,7 @@ export default function RootLayout({
       <body className={`${roboto.className} antialiased`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

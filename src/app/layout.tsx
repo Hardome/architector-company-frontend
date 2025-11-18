@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import type {Metadata} from 'next';
 import {Roboto} from 'next/font/google';
 
@@ -14,8 +15,13 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: 'ЛесПарк - Жилой посёлок в Тюмени',
-  // eslint-disable-next-line max-len
-  description: 'ЖК ЛесПарк - это современный посёлок с современными домами и инфраструктурой для комфортного проживания'
+  description: 'ЖК ЛесПарк - это посёлок с уникальной архитектурой и инфраструктурой для комфортного проживания',
+  keywords: ['ЛесПарк', 'ЖК', 'Тюмень', 'Посёлок', 'Купить дом', 'Продажа домов', 'Дома', 'Архитектура', 'Инфраструктура', 'Комфортное проживание'],
+  openGraph: {
+    title: 'ЛесПарк - Жилой посёлок в Тюмени',
+    description: 'ЖК ЛесПарк - это посёлок с уникальной архитектурой и инфраструктурой для комфортного проживания',
+    images: ['/architecture.png']
+  }
 };
 
 export default function RootLayout({

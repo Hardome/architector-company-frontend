@@ -3,6 +3,7 @@
 import React, {useState} from 'react';
 import {Menu, X} from 'lucide-react';
 
+import ChooseHouseButton from '@/components/ChooseHouseButton';
 import {Button} from '@/components/ui/button';
 import useScrollToSection from '@/hooks/useScrollToSection';
 import {MENU_ITEMS} from '@/lib/constants';
@@ -38,11 +39,10 @@ export default function HeaderClient() {
             <Button
               onClick={scrollToTop}
               variant={'text'}
-              className={'text-xl lg:text-2xl text-primary font-bold hover:opacity-80 transition-opacity'}
+              className={'text-xl lg:text-2xl text-primary font-bold hover:opacity-80 transition-opacity hover:text-primary/90'}
             >
               {'ЛесПарк'}
             </Button>
-
             <nav className={'hidden lg:flex items-center gap-8'}>
               {
                 MENU_ITEMS.map((item) => (
@@ -57,15 +57,8 @@ export default function HeaderClient() {
                 ))
               }
             </nav>
-
             <div className={'flex items-center gap-4'}>
-              <Button
-                onClick={() => scrollToSection('projects')}
-                className={'hidden lg:flex rounded-full'}
-                size={'lg'}
-              >
-                {'Подобрать дом'}
-              </Button>
+              <ChooseHouseButton size={'lg'} className={'hidden lg:flex rounded-full'} />
               <Button
                 onClick={toggleMobileMenu}
                 variant={'text'}

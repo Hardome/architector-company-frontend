@@ -64,7 +64,6 @@ const MediaGalleryGrid = ({mediaItems}: MediaGalleryGridProps) => {
         }
       </div>
 
-      {/* Lightbox */}
       {
         lightboxIndex !== null && (
           <div
@@ -86,7 +85,7 @@ const MediaGalleryGrid = ({mediaItems}: MediaGalleryGridProps) => {
             <Button
               type={'button'}
               onClick={prevImage}
-              variant={'ghost'}
+              variant={'text'}
               className={
                 'absolute left-4 p-2'
               }
@@ -106,7 +105,7 @@ const MediaGalleryGrid = ({mediaItems}: MediaGalleryGridProps) => {
 
             <Button
               onClick={nextImage}
-              variant={'ghost'}
+              variant={'text'}
               className={
                 'absolute right-4 p-2'
               }

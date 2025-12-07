@@ -39,7 +39,7 @@ export default function HeaderClient() {
             <Button
               onClick={scrollToTop}
               variant={'text'}
-              className={'text-xl lg:text-2xl text-primary font-bold hover:opacity-80 transition-opacity hover:text-primary/90'}
+              className={'text-xl lg:text-2xl font-bold hover:opacity-80 transition-opacity'}
             >
               {'ELORIA'}
             </Button>

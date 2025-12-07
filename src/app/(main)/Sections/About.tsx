@@ -45,12 +45,12 @@ export default function AboutSection() {
                 }
               >
                 <div className={'flex-1 space-y-4'}>
-                  <p className={'text-base lg:text-lg leading-relaxed text-foreground whitespace-pre-line'}>
+                  <p className={'text-base lg:text-lg leading-relaxed text-light-text whitespace-pre-line'}>
                     {item.text}
                   </p>
                 </div>
                 <div className={'flex-1 w-full'}>
-                  <div className={'aspect-square rounded-2xl overflow-hidden shadow-medium'}>
+                  <div className={'aspect-square overflow-hidden shadow-medium'}>
                     <Image
                       src={item.image}
                       alt={item.alt}

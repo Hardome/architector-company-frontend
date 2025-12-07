@@ -1,4 +1,4 @@
-// Пункты меню навигации
+/* Пункты меню навигации */
 export const MENU_ITEMS = [
   {label: 'О поселке', id: 'about'},
   {label: 'Медиа', id: 'media'},

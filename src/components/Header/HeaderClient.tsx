@@ -41,7 +41,7 @@ export default function HeaderClient() {
               variant={'text'}
               className={'text-xl lg:text-2xl text-primary font-bold hover:opacity-80 transition-opacity hover:text-primary/90'}
             >
-              {'ЛесПарк'}
+              {'ELORIA'}
             </Button>
             <nav className={'hidden lg:flex items-center gap-8'}>
               {

@@ -15,13 +15,13 @@ const Footer = () => (
       <div className={'grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12'}>
         {/* About Company */}
         <div className={'space-y-4'}>
-          <h3 className={'text-2xl font-bold'}>{'ЛесПарк'}</h3>
+          <h3 className={'text-2xl font-bold'}>{'ELORIA'}</h3>
           <p className={'text-primary-foreground/80 text-sm'}>
             {'Строительная компания с 15-летним опытом. Реализовано более 30\r'}
             {'успешных проектов.\r'}
           </p>
           <p className={'text-xs text-primary-foreground/60'}>
-            {'ООО "ЛесПарк Девелопмент"\r'}
+            {'ООО "????"\r'}
           </p>
         </div>
 
@@ -52,7 +52,7 @@ const Footer = () => (
           <div className={'space-y-3 text-sm text-primary-foreground/80'}>
             <div className={'flex items-start gap-3'}>
               <MapPin size={18} className={'mt-1 flex-shrink-0'} />
-              <span>{'г. Москва, ул. Примерная, д. 1'}</span>
+              <span>{'г. Тюмень, ул. ????, д. ??'}</span>
             </div>
             <div className={'flex items-center gap-3'}>
               <Phone size={18} className={'flex-shrink-0'} />
@@ -66,10 +66,10 @@ const Footer = () => (
             <div className={'flex items-center gap-3'}>
               <Mail size={18} className={'flex-shrink-0'} />
               <a
-                href={'mailto:info@lespark.ru'}
+                href={'mailto:info@example.ru'}
                 className={'hover:text-primary-foreground transition-colors'}
               >
-                {'info@lespark.ru\r'}
+                {'info@example.ru\r'}
               </a>
             </div>
           </div>
@@ -106,7 +106,7 @@ const Footer = () => (
       </div>
 
       <div className={'pt-8 border-t border-primary-foreground/20 text-center text-sm text-primary-foreground/60'}>
-        <p>{'© 2025 ЛесПарк. Все права защищены.'}</p>
+        <p>{'© 2025 ELORIA. Все права защищены.'}</p>
       </div>
     </div>
   </footer>

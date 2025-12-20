@@ -9,9 +9,19 @@ export default function ChooseHouseButton(
   props: React.ComponentProps<'button'> & VariantProps<typeof buttonVariants>
 ) {
   const scrollToProjects = useScrollToSection();
+  const {className, onClick, ...rest} = props;
 
   return (
-    <Button onClick={() => scrollToProjects('projects')} {...props}>
+    <Button
+      {...rest}
+      onClick={
+        (evt) => {
+          scrollToProjects('projects');
+          onClick?.(evt);
+        }
+      }
+      className={`uppercase ${className}`}
+    >
       {'Подобрать дом'}
     </Button>
   );

@@ -1,4 +1,4 @@
-const offset = 80;
+const HEADER_HEIGHT = 72 as const;
 
 export default function useScrollToSection() {
   return (id: string) => {
@@ -6,7 +6,7 @@ export default function useScrollToSection() {
 
     if (element) {
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      const offsetPosition = elementPosition + window.pageYOffset - HEADER_HEIGHT;
 
       window.scrollTo({top: offsetPosition, behavior: 'smooth'});
     }

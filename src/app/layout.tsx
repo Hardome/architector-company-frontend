@@ -1,16 +1,26 @@
 /* eslint-disable max-len */
 import type {Metadata} from 'next';
-import {Roboto} from 'next/font/google';
+import {Cormorant_Garamond as Cormorant} from 'next/font/google';
+import localFont from 'next/font/local';
 
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 
 import './globals.css';
 
-const roboto = Roboto({
+const cormorant = Cormorant({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin', 'cyrillic'],
-  variable: '--font-roboto'
+  variable: '--font-cormorant'
+});
+
+const houschkaPro = localFont({
+  src: [{
+    path: './fonts/HouschkaPro-Light.woff2',
+    weight: '500',
+    style: 'normal'
+  }],
+  variable: '--font-houschka'
 });
 
 export const metadata: Metadata = {
@@ -31,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={'ru'}>
-      <body className={`${roboto.className} antialiased`}>
+      <body className={`${cormorant.className} ${houschkaPro.variable} antialiased`}>
         <Header />
         {children}
         <Footer />

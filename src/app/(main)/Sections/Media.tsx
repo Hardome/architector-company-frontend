@@ -13,7 +13,7 @@ const mediaItems = [
 const MediaGallery = () => (
   <section id={'media'} className={'py-20 lg:py-32 bg-muted/30'}>
     <div className={'container mx-auto px-4 lg:px-8'}>
-      <h2 className={'text-3xl lg:text-5xl font-bold text-center mb-16 text-primary'}>
+      <h2 className={'text-3xl lg:text-5xl text-center mb-16 text-primary'}>
         {'Медиа'}
       </h2>
 

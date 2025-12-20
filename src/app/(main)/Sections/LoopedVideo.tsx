@@ -16,19 +16,19 @@ export default function LoopedVideoSection() {
       <div className={'relative h-full flex flex-col items-center justify-center px-4 text-center'}>
         <div className={'max-w-4xl space-y-6 animate-fade-in'}>
           <H1
-            className={'md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg text-balance'}
+            className={'md:text-5xl lg:text-7xl font-bold text-white drop-shadow-lg text-balance font-normal'}
           >
             {'Дружелюбный поселок в пяти минутах от города'}
           </H1>
           <Lead
             className={
-              'md:text-2xl lg:text-3xl ' +
-              'text-white/95 drop-shadow-md text-balance'
+              'md:text-2xl lg:text-2xl ' +
+              'text-white/95 drop-shadow-md text-balance font-light font-houschka'
             }
           >
             {'Ваш дом — место наполнения энергией'}
           </Lead>
-          <ChooseHouseButton size={'xl'} className={'rounded-full mt-6'} />
+          <ChooseHouseButton size={'4xl'} className={'rounded-full mt-4 text-xl'} />
         </div>
       </div>
       <div className={'absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce'}>

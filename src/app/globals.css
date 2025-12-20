@@ -2,19 +2,19 @@
 @import "tw-animate-css";
 
 body {
-  font-family: var(--font-roboto), Arial, Helvetica, sans-serif;
+  font-family: var(--font-cormorant), Arial, Helvetica, sans-serif;
 }
 
 :root {
-  --background: hsl(0 0% 0%);
+  --background: #0A1016;
   --foreground: hsl(223.8136 -172.5242% 100.0000%);
-  --card: hsl(223.8136 0.0000% 3.5452%);
+  --card: #202122;
   --card-foreground: hsl(223.8136 -172.5242% 100.0000%);
   --popover: hsl(223.8136 0.0000% 6.8692%);
   --popover-foreground: hsl(223.8136 -172.5242% 100.0000%);
   --primary: hsl(223.8136 -172.5242% 100.0000%);
   --primary-foreground: hsl(0 0% 0%);
-  --secondary: hsl(223.8136 0.0000% 13.1499%);
+  --secondary: #898D91;
   --secondary-foreground: hsl(223.8136 -172.5242% 100.0000%);
   --muted: hsl(223.8136 0.0000% 11.3040%);
   --muted-foreground: hsl(223.8136 0.0000% 64.4710%);
@@ -38,9 +38,9 @@ body {
   --sidebar-accent-foreground: hsl(223.8136 -172.5242% 100.0000%);
   --sidebar-border: hsl(223.8136 0.0000% 19.8916%);
   --sidebar-ring: hsl(223.8136 0.0000% 64.4710%);
-  --font-sans: Geist, sans-serif;
-  --font-serif: Georgia, serif;
-  --font-mono: Geist Mono, monospace;
+  --font-sans: var(--font-houschka), sans-serif;
+  --font-serif: var(--font-cormorant), serif;
+  --font-mono: 'Courier New', Courier, monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 1px;
@@ -56,7 +56,7 @@ body {
   --shadow-lg: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 4px 6px -1px hsl(0 0% 0% / 0.18);
   --shadow-xl: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 8px 10px -1px hsl(0 0% 0% / 0.18);
   --shadow-2xl: 0px 1px 2px 0px hsl(0 0% 0% / 0.45);
-  --light-text: #FFFFFF7a;
+  --light-text: rgb(168, 168, 168);
 }
 
 @theme inline {
@@ -97,6 +97,7 @@ body {
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
+  --font-houschka: var(--font-houschka);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

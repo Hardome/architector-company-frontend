@@ -4,6 +4,8 @@ import {Button} from '@/components/ui/button';
 import useScrollToSection from '@/hooks/useScrollToSection';
 import {MENU_ITEMS} from '@/lib/constants';
 
+import ChooseHouseButton from '../ChooseHouseButton';
+
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
@@ -30,22 +32,13 @@ export default function MobileMenu({isOpen, onClose}: MobileMenuProps) {
                 key={item.id}
                 onClick={() => handleItemClick(item.id)}
                 variant={'ghost'}
-                className={'text-lg font-medium text-white'}
+                className={'text-xl font-medium text-white'}
               >
                 {item.label}
               </Button>
             ))
           }
-          <Button
-            size={'lg'}
-            variant={'default'}
-            onClick={() => handleItemClick('projects')}
-            className={
-              'rounded-full w-full mt-4'
-            }
-          >
-            {'Подобрать дом'}
-          </Button>
+          <ChooseHouseButton size={'lg'} className={'rounded-full w-full mt-4'} onClick={onClose} />
         </nav>
       </div>
     </div>

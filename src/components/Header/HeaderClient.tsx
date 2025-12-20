@@ -35,7 +35,7 @@ export default function HeaderClient() {
         }
       >
         <div className={'container mx-auto px-4 lg:px-8'}>
-          <div className={'flex items-center justify-between h-20'}>
+          <div className={'flex items-center justify-between h-18'}>
             <Button
               onClick={scrollToTop}
               variant={'text'}
@@ -49,7 +49,7 @@ export default function HeaderClient() {
                   <Button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={'text-sm font-medium text-white hover:text-gray-300 transition-colors '}
+                    className={'text-lg text-white hover:text-gray-300 transition-colors'}
                     variant={'text'}
                   >
                     {item.label}

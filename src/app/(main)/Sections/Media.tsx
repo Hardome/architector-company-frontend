@@ -5,8 +5,8 @@ const mediaItems = [
   {src: '/topPerspective2.png', alt: 'Жизнь в поселке', type: 'image'},
   {src: '/architecture.png', alt: 'Архитектура домов', type: 'image'},
   {src: '/road3.png', alt: 'Сервисы поселка', type: 'image'},
-  {src: '/garden.png', alt: 'Природа и парк', type: 'image'},
-  {src: '/house.png', alt: 'Проект дома 1', type: 'image'}
+  {src: '/garden.png', alt: 'Природа и парк', type: 'image'}
+  // {src: '/house.png', alt: 'Проект дома 1', type: 'image'}
   // {src: '/house.png', alt: 'Проект дома 2', type: 'image'}
 ];
 
@@ -22,7 +22,6 @@ const MediaGallery = () => (
           <p className={'text-muted-foreground'}>{'Видео обзор поселка'}</p>
         </div>
       </div>
-
       <MediaGalleryGrid mediaItems={mediaItems} />
     </div>
   </section>

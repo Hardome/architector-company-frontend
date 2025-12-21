@@ -1,29 +1,26 @@
 'use client';
 
-import React, {useState} from 'react';
-import {Calendar, Home, LayoutDashboard, MapPin} from 'lucide-react';
-import Image from 'next/image';
+import {useState} from 'react';
+import {MapPin} from 'lucide-react';
 
-import ImageLightbox from '@/components/ImageLightbox';
+import ContactDialog from '@/components/ContactDialog';
+import {MediaGallery} from '@/components/MediaGallery';
 import {Button} from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle
-} from '@/components/ui/dialog';
-import {Input} from '@/components/ui/input';
 import {H2, H3, P} from '@/components/ui/typography';
 
-// Функция для генерации путей к изображениям проекта
 const generateProjectImages = (
   folderName: string,
   count: number,
   imageName: string
-): string[] =>
+) =>
   Array.from(
     {length: count},
-    (_, i) => `/${folderName}/${imageName} (${i + 1}).webp`
+    (_, i) => {
+      return {
+        src: `/${folderName}/${imageName} (${i + 1}).webp`,
+        alt: `Изображение проекта ${folderName}`
+      };
+    }
   );
 
 const projects = [
@@ -71,56 +68,6 @@ const projects = [
 
 const ProjectsSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [phone, setPhone] = useState('');
-  const [lightboxProject, setLightboxProject] = useState<number | null>(null);
-  const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleSubmit = (evt: React.FormEvent) => {
-    evt.preventDefault();
-
-    // TODO: Отправить телефон на сервер
-    // eslint-disable-next-line no-console
-    console.log('Phone submitted:', phone);
-
-    setIsModalOpen(false);
-    setPhone('');
-  };
-
-  const openLightbox = (projectIndex: number, imageIndex: number) => {
-    setLightboxProject(projectIndex);
-    setLightboxImageIndex(imageIndex);
-  };
-
-  const closeLightbox = () => {
-    setLightboxProject(null);
-    setLightboxImageIndex(0);
-  };
-
-  const nextImage = () => {
-    if (lightboxProject !== null) {
-      const project = projects[lightboxProject];
-
-      setLightboxImageIndex((prev) =>
-        prev < project.images.length - 1 ? prev + 1 : 0);
-    }
-  };
-
-  const prevImage = () => {
-    if (lightboxProject !== null) {
-      const project = projects[lightboxProject];
-
-      setLightboxImageIndex((prev) =>
-        prev > 0 ? prev - 1 : project.images.length - 1);
-    }
-  };
-
-  const handleThumbnailClick = (index: number) => {
-    setLightboxImageIndex(index);
-  };
 
   return (
     <section id={'projects'} className={'py-20 lg:py-32 bg-background'}>
@@ -130,7 +77,7 @@ const ProjectsSection = () => {
         </H2>
         <div className={'grid md:grid-cols-2 gap-8 lg:gap-12'}>
           {
-            projects.map((project, projectIndex) => (
+            projects.map((project) => (
               <div
                 key={project.id}
                 className={
@@ -139,22 +86,8 @@ const ProjectsSection = () => {
                 }
               >
                 {/* Image Gallery */}
-                <div className={'relative aspect-[4/3] overflow-hidden group'}>
-                  <div
-                    onClick={() => openLightbox(projectIndex, 0)}
-                    className={'w-full h-full hover:cursor-pointer'}
-                  >
-                    <Image
-                      src={project.images[0]}
-                      alt={project.name}
-                      width={1080}
-                      height={720}
-                      className={
-                        'w-full h-full object-cover group-hover:scale-105 ' +
-                        'transition-transform duration-300'
-                      }
-                    />
-                  </div>
+                <div className={'relative aspect-[4/3] overflow-hidden group h-100px'}>
+                  <MediaGallery images={project.images} />
                 </div>
 
                 {/* Content */}
@@ -209,7 +142,7 @@ const ProjectsSection = () => {
                       {project.price}
                     </P>
                     <Button
-                      onClick={openModal}
+                      onClick={() => setIsModalOpen(true)}
                       className={'w-full rounded-full hover:opacity-90 transition-opacity text-xl'}
                       size={'lg'}
                     >
@@ -234,57 +167,7 @@ const ProjectsSection = () => {
       </div>
 
       {/* Contact Modal */}
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{'Оставьте номер телефона'}</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleSubmit} className={'space-y-4'}>
-            <Input
-              type={'tel'}
-              placeholder={'+7 (___) ___-__-__'}
-              value={phone}
-              onChange={(evt) => setPhone(evt.target.value)}
-              required={true}
-              className={'rounded-lg'}
-            />
-            <Button
-              type={'submit'}
-              className={
-                'w-full rounded-full bg-gradient-primary ' +
-                'hover:opacity-90 transition-opacity'
-              }
-            >
-              {'Отправить'}
-            </Button>
-          </form>
-        </DialogContent>
-      </Dialog>
-
-      {/* Image Lightbox */}
-      {
-        lightboxProject !== null && (
-          <ImageLightbox
-            images={
-              projects[lightboxProject].images.map((src, index) => {
-                return {
-                  src,
-                  alt: `${projects[lightboxProject].name} - изображение ${index + 1}`
-                };
-              })
-            }
-            currentIndex={lightboxImageIndex}
-            onClose={closeLightbox}
-            onNext={nextImage}
-            onPrev={prevImage}
-            onThumbnailClick={handleThumbnailClick}
-            showThumbnails={true}
-            showCounter={projects[lightboxProject].images.length > 1}
-            imageWidth={1200}
-            imageHeight={800}
-          />
-        )
-      }
+      <ContactDialog isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 };

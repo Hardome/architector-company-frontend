@@ -3,7 +3,7 @@
 import {Fragment, useState} from 'react';
 import Image from 'next/image';
 
-import ImageLightbox from '@/components/ImageLightbox';
+import {DialogMediaSlider} from '@/components/DialogMediaSlider';
 
 interface MediaItem {
   src: string;
@@ -20,20 +20,6 @@ const MediaGalleryGrid = ({mediaItems}: MediaGalleryGridProps) => {
 
   const openLightbox = (index: number) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
-
-  const nextImage = () => {
-    if (lightboxIndex !== null) {
-      setLightboxIndex((lightboxIndex + 1) % mediaItems.length);
-    }
-  };
-
-  const prevImage = () => {
-    if (lightboxIndex !== null) {
-      setLightboxIndex(
-        (lightboxIndex - 1 + mediaItems.length) % mediaItems.length
-      );
-    }
-  };
 
   const handleThumbnailClick = (index: number) => {
     setLightboxIndex(index);
@@ -66,10 +52,9 @@ const MediaGalleryGrid = ({mediaItems}: MediaGalleryGridProps) => {
           ))
         }
       </div>
-
       {
         lightboxIndex !== null && (
-          <ImageLightbox
+          <DialogMediaSlider
             images={
               mediaItems.map((item) => {
                 return {src: item.src, alt: item.alt};
@@ -77,8 +62,6 @@ const MediaGalleryGrid = ({mediaItems}: MediaGalleryGridProps) => {
             }
             currentIndex={lightboxIndex}
             onClose={closeLightbox}
-            onNext={nextImage}
-            onPrev={prevImage}
             onThumbnailClick={handleThumbnailClick}
             showThumbnails={true}
             showCounter={true}

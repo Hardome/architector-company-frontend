@@ -54,7 +54,7 @@ export default function AboutSection() {
                     {item.text}
                   </P>
                 </div>
-                <div className={'lg:aspect-10/5 rounded-2xl overflow-hidden shadow-medium lg:w-1/2 min-h-[400px]'}>
+                <div className={'lg:aspect-10/5 rounded-2xl overflow-hidden shadow-medium lg:w-1/2 lg:min-h-[400px]'}>
                   <Image
                     src={item.image}
                     alt={item.alt}

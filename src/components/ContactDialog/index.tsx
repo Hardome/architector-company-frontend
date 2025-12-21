@@ -39,10 +39,10 @@ const ContactDialog = ({isOpen, onClose, payload}: ContactDialogProps) => {
     setIsLoading(true);
 
     try {
-      const backendUrl = process.env.BACKEND_URL;
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
       if (!backendUrl) {
-        throw new Error('BACKEND_URL не настроен');
+        throw new Error('NEXT_PUBLIC_BACKEND_URL не настроен');
       }
 
       const response = await fetch(`${backendUrl}/contacts`, {

@@ -1,7 +1,6 @@
 'use client';
 
 import {useEffect, useRef, useState} from 'react';
-import {createPortal} from 'react-dom';
 import {X} from 'lucide-react';
 import Image from 'next/image';
 import type {Swiper as SwiperType} from 'swiper';
@@ -14,7 +13,7 @@ import 'swiper/css/thumbs';
 import 'swiper/css/zoom';
 
 import {Button} from '@/components/ui/button';
-import {Dialog} from '@/components/ui/dialog';
+import {Dialog, DialogOverlay, DialogPortal} from '@/components/ui/dialog';
 
 interface ImageItem {
   src: string;
@@ -74,124 +73,126 @@ export function DialogMediaSlider({
     return null;
   }
 
-  return createPortal(
+  return (
     <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
-      <div className={'fixed inset-0 z-[1000] bg-black/90 flex flex-col h-dvh'}>
-        {/* header */}
-        {
-          showCounter && (
-            <div className={'flex justify-between items-center p-4 text-white'}>
-              <span>
-                {currentIndex + 1}
-                {' / '}
-                {images.length}
-              </span>
-              <Button variant={'ghost'} size={'icon'} onClick={onClose}>
-                <X />
-              </Button>
-            </div>
-          )
-        }
-        {
-          !showCounter && (
-            <div className={'flex justify-end items-center p-4'}>
-              <Button
-                variant={'ghost'}
-                size={'icon'}
-                onClick={onClose}
-                className={'text-white'}
-              >
-                <X />
-              </Button>
-            </div>
-          )
-        }
+      <DialogPortal data-slot={'dialog-portal'}>
+        <DialogOverlay />
+        <div className={'fixed inset-0 z-[1000] bg-black/90 flex flex-col h-dvh'}>
+          {/* header */}
+          {
+            showCounter && (
+              <div className={'flex justify-between items-center p-4 text-white'}>
+                <span>
+                  {currentIndex + 1}
+                  {' / '}
+                  {images.length}
+                </span>
+                <Button variant={'ghost'} size={'icon'} onClick={onClose}>
+                  <X />
+                </Button>
+              </div>
+            )
+          }
+          {
+            !showCounter && (
+              <div className={'flex justify-end items-center p-4'}>
+                <Button
+                  variant={'ghost'}
+                  size={'icon'}
+                  onClick={onClose}
+                  className={'text-white'}
+                >
+                  <X />
+                </Button>
+              </div>
+            )
+          }
 
-        {/* main swiper */}
-        <div className={'relative flex-1'}>
-          <Swiper
-            modules={[Navigation, Thumbs, Zoom, Keyboard]}
-            navigation={true}
-            thumbs={{swiper: thumbs}}
-            zoom={true}
-            keyboard={true}
-            initialSlide={currentIndex}
-            onSwiper={
-              (swiper) => {
-                mainSwiperRef.current = swiper;
+          {/* main swiper */}
+          <div className={'relative flex-1'}>
+            <Swiper
+              modules={[Navigation, Thumbs, Zoom, Keyboard]}
+              navigation={true}
+              thumbs={{swiper: thumbs}}
+              zoom={true}
+              keyboard={true}
+              initialSlide={currentIndex}
+              onSwiper={
+                (swiper) => {
+                  mainSwiperRef.current = swiper;
+                }
               }
-            }
-            onSlideChange={handleSlideChange}
-            className={'h-full'}
-            style={
+              onSlideChange={handleSlideChange}
+              className={'h-full'}
+              style={
               {
                 '--swiper-theme-color': '#fff'
               } as React.CSSProperties
-            }
-          >
-            {
-              images.map((item) => (
-                <SwiperSlide key={item.src}>
-                  <div
-                    className={
-                      'swiper-zoom-container relative flex items-center justify-center h-full'
-                    }
-                  >
-                    <Image
-                      src={item.src}
-                      alt={item.alt || ''}
-                      fill={true}
-                      sizes={'100vw'}
-                      className={'object-contain select-none'}
-                    />
-                  </div>
-                </SwiperSlide>
-              ))
-            }
-          </Swiper>
-        </div>
-        {/* thumbs */}
-        {
-          showThumbnails && (
-            <div className={'p-2'}>
-              <Swiper
-                modules={[Thumbs]}
-                onSwiper={setThumbs}
-                slidesPerView={'auto'}
-                spaceBetween={8}
-                watchSlidesProgress={true}
-                className={'h-20 w-fit'}
-              >
-                {
-                  images.map((item, index) => (
-                    <SwiperSlide
-                      key={item.src}
+              }
+            >
+              {
+                images.map((item) => (
+                  <SwiperSlide key={item.src}>
+                    <div
                       className={
-                        `
+                        'swiper-zoom-container relative flex items-center justify-center h-full'
+                      }
+                    >
+                      <Image
+                        src={item.src}
+                        alt={item.alt || ''}
+                        fill={true}
+                        sizes={'100vw'}
+                        className={'object-contain select-none'}
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))
+              }
+            </Swiper>
+          </div>
+          {/* thumbs */}
+          {
+            showThumbnails && (
+              <div className={'p-2'}>
+                <Swiper
+                  modules={[Thumbs]}
+                  onSwiper={setThumbs}
+                  slidesPerView={'auto'}
+                  spaceBetween={8}
+                  watchSlidesProgress={true}
+                  className={'h-20 w-fit'}
+                >
+                  {
+                    images.map((item, index) => (
+                      <SwiperSlide
+                        key={item.src}
+                        className={
+                          `
                           !w-auto
                           [&.swiper-slide-thumb-active]:border-3
                           [&.swiper-slide-thumb-active]:border-primary
                           [&.swiper-slide-thumb-active]:rounded
                           `
-                      }
-                      onClick={() => onThumbnailClick?.(index)}
-                    >
-                      <Image
-                        src={item.src}
-                        alt={item.alt || ''}
-                        className={'object-cover h-full rounded cursor-pointer select-none'}
-                        width={80}
-                        height={80}
-                      />
-                    </SwiperSlide>
-                  ))
-                }
-              </Swiper>
-            </div>
-          )
-        }
-      </div>
-    </Dialog>,
-    document.body
+                        }
+                        onClick={() => onThumbnailClick?.(index)}
+                      >
+                        <Image
+                          src={item.src}
+                          alt={item.alt || ''}
+                          className={'object-cover h-full rounded cursor-pointer select-none'}
+                          width={80}
+                          height={80}
+                        />
+                      </SwiperSlide>
+                    ))
+                  }
+                </Swiper>
+              </div>
+            )
+          }
+        </div>
+      </DialogPortal>
+    </Dialog>
   );
 }

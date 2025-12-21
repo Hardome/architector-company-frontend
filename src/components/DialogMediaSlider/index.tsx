@@ -76,7 +76,7 @@ export function DialogMediaSlider({
 
   return createPortal(
     <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
-      <div className={'fixed inset-0 z-[1000] bg-black/90 flex flex-col'}>
+      <div className={'fixed inset-0 z-[1000] bg-black/90 flex flex-col h-dvh'}>
         {/* header */}
         {
           showCounter && (

@@ -143,6 +143,7 @@ const Footer = () => {
       <ContactDialog
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        payload={{from: 'Футер сайта'}}
       />
     </React.Fragment>
   );

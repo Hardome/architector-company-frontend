@@ -16,7 +16,7 @@ interface ContactDialogProps {
   isOpen: boolean;
   onClose: () => void;
   payload?: {
-    title?: string;
+    from?: string;
   };
 }
 
@@ -77,8 +77,8 @@ const ContactDialog = ({isOpen, onClose, payload}: ContactDialogProps) => {
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{'Оставьте номер телефона'}</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className={'text-3xl font-medium'}>{'Оставьте номер телефона'}</DialogTitle>
+          <DialogDescription className={'text-base text-muted-foreground'}>
             {'Мы свяжемся с вами в ближайшее время'}
           </DialogDescription>
         </DialogHeader>
@@ -115,8 +115,8 @@ const ContactDialog = ({isOpen, onClose, payload}: ContactDialogProps) => {
             type={'submit'}
             disabled={isLoading}
             className={
-              'w-full rounded-full bg-gradient-primary ' +
-                'hover:opacity-90 transition-opacity disabled:opacity-50'
+              'w-full rounded-full ' +
+                'hover:opacity-90 transition-opacity disabled:opacity-50 text-base'
             }
           >
             {isLoading ? 'Отправка...' : 'Отправить'}

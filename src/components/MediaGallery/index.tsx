@@ -29,7 +29,7 @@ export function MediaGallery({images}: MediaGalleryProps) {
         style={
           {
             '--swiper-theme-color': '#fff'
-          }
+          } as React.CSSProperties
         }
       >
         {

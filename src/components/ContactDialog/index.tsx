@@ -38,7 +38,7 @@ const ContactDialog = ({isOpen, onClose, payload}: ContactDialogProps) => {
     setError(null);
     setIsLoading(true);
 
-    try {
+    // try {
       const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
       if (!backendUrl) {
@@ -62,15 +62,15 @@ const ContactDialog = ({isOpen, onClose, payload}: ContactDialogProps) => {
       }
 
       handleClose();
-    } catch(err) {
-      setError(
-        err instanceof Error ? err.message : 'Произошла ошибка при отправке'
-      );
-      // eslint-disable-next-line no-console
-      console.error('Error submitting form:', JSON.stringify(err));
-    } finally {
-      setIsLoading(false);
-    }
+    // } catch(err) {
+    //   setError(
+    //     err instanceof Error ? err.message : 'Произошла ошибка при отправке'
+    //   );
+    //   // eslint-disable-next-line no-console
+    //   console.error('Error submitting form:', JSON.stringify(err));
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   return (

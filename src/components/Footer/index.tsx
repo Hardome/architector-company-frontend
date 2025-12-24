@@ -18,12 +18,12 @@ const Footer = () => {
 
   return (
     <React.Fragment>
-      <footer className={'bg-primary text-primary-foreground pt-20 pb-8'}>
+      <footer className={'bg-secondary text-primary-foreground pt-20 pb-8'}>
         <div className={'container mx-auto px-4 lg:px-8'}>
           <div className={'grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12'}>
             {/* About Company */}
             <div className={'space-y-4'}>
-              <h3 className={'text-2xl font-bold'}>{'ELORIA'}</h3>
+              <h3 className={'text-2xl font-bold'}>{'ELLORIA'}</h3>
               <p className={'text-primary-foreground/80 text-sm'}>
                 {'Строительная компания с 15-летним опытом. Реализовано более 30\r'}
                 {'успешных проектов.\r'}
@@ -134,7 +134,7 @@ const Footer = () => {
               'text-center text-sm text-primary-foreground/60'
             }
           >
-            <p>{'© 2025 ELORIA. Все права защищены.'}</p>
+            <p>{'© 2025 ELLORIA. Все права защищены.'}</p>
           </div>
         </div>
       </footer>

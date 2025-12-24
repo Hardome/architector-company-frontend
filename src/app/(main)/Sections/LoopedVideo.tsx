@@ -5,7 +5,7 @@ export default function LoopedVideoSection() {
   return (
     <section className={'relative h-[100vh] w-full md:h-screen overflow-hidden'}>
       <video
-        className={'absolute inset-0 h-full w-full object-cover'}
+        className={'absolute inset-0 h-full w-full object-cover opacity-80 blur-sm'}
         src={'/interview.mp4'}
         autoPlay={true}
         muted={true}
@@ -16,7 +16,10 @@ export default function LoopedVideoSection() {
       <div className={'relative h-full flex flex-col items-center justify-center px-4 text-center'}>
         <div className={'max-w-4xl space-y-6 animate-fade-in'}>
           <H1
-            className={'md:text-5xl lg:text-7xl font-bold text-white drop-shadow-lg text-balance font-normal'}
+            className={
+              'md:text-5xl lg:text-7xl font-bold text-white ' +
+              'drop-shadow-lg text-balance font-normal'
+            }
           >
             {'Дружелюбный поселок в пяти минутах от города'}
           </H1>

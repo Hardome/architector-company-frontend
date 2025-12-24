@@ -1,10 +1,11 @@
 'use client';
 
 import React, {useState} from 'react';
-import {Menu, X} from 'lucide-react';
+import {Menu, Phone, X} from 'lucide-react';
 
 import ChooseHouseButton from '@/components/ChooseHouseButton';
 import {Button} from '@/components/ui/button';
+import {P} from '@/components/ui/typography';
 import useScrollToSection from '@/hooks/useScrollToSection';
 import {MENU_ITEMS} from '@/lib/constants';
 
@@ -41,7 +42,7 @@ export default function HeaderClient() {
               variant={'text'}
               className={'text-xl lg:text-2xl font-bold hover:opacity-80 transition-opacity'}
             >
-              {'ELORIA'}
+              {'ELLORIA'}
             </Button>
             <nav className={'hidden lg:flex items-center gap-8'}>
               {
@@ -58,6 +59,16 @@ export default function HeaderClient() {
               }
             </nav>
             <div className={'flex items-center gap-4'}>
+              <a
+                href={'tel:+74951234567'}
+                className={
+                  'hidden lg:flex items-center gap-2 text-white hover:text-gray-300 ' +
+                  'transition-colors text-lg font-medium'
+                }
+              >
+                <Phone size={18} />
+                <P>{'+7 (495) 123-45-67'}</P>
+              </a>
               <ChooseHouseButton size={'lg'} className={'hidden lg:flex rounded-full'} />
               <Button
                 onClick={toggleMobileMenu}

@@ -12,16 +12,15 @@ const generateProjectImages = (
   folderName: string,
   count: number,
   imageName: string
-) =>
-  Array.from(
-    {length: count},
-    (_, i) => {
-      return {
-        src: `/${folderName}/${imageName} (${i + 1}).webp`,
-        alt: `Изображение проекта ${folderName}`
-      };
-    }
-  );
+) => Array.from(
+  {length: count},
+  (_, i) => {
+    return {
+      src: `/${folderName}/${imageName} (${i}).webp`,
+      alt: `Изображение проекта ${folderName}`
+    };
+  }
+);
 
 const projects = [
   {

@@ -25,6 +25,7 @@ const MediaGallery = () => (
             src={'/review.mp4'}
             controls={true}
             playsInline={true}
+            poster={'/walkingArea.webp'}
             preload={'metadata'}
             className={'w-full h-full object-cover'}
           />

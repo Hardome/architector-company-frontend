@@ -19,7 +19,15 @@ const MediaGallery = () => (
 
       <div className={'mb-12 rounded-2xl overflow-hidden shadow-medium'}>
         <div className={'aspect-video bg-muted flex items-center justify-center'}>
-          <p className={'text-muted-foreground'}>{'Видео обзор поселка'}</p>
+          {/* <p className={'text-muted-foreground'}>{'Видео обзор поселка'}</p> */}
+          <video
+            title={'Обзор поселка'}
+            src={'/review.mp4'}
+            controls={true}
+            playsInline={true}
+            preload={'none'}
+            className={'w-full h-full object-cover'}
+          />
         </div>
       </div>
       <MediaGalleryGrid mediaItems={mediaItems} />

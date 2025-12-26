@@ -25,7 +25,7 @@ const MediaGallery = () => (
             src={'/review.mp4'}
             controls={true}
             playsInline={true}
-            preload={'none'}
+            preload={'metadata'}
             className={'w-full h-full object-cover'}
           />
         </div>

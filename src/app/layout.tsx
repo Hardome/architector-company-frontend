@@ -9,7 +9,7 @@ import Header from '@/components/Header';
 import './globals.css';
 
 const cormorant = Cormorant({
-  weight: ['300', '400', '500', '700'],
+  weight: ['400', '500', '700'],
   subsets: ['latin', 'cyrillic'],
   variable: '--font-cormorant',
   preload: true,
@@ -23,7 +23,8 @@ const houschkaPro = localFont({
     style: 'normal'
   }],
   variable: '--font-houschka',
-  preload: true
+  preload: true,
+  display: 'swap'
 });
 
 export const metadata: Metadata = {

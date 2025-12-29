@@ -1,14 +1,12 @@
 'use client';
 
 import React, {useState} from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import {Navigation} from 'swiper/modules';
 import {Swiper, SwiperSlide} from 'swiper/react';
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-
-import {DialogMediaSlider} from '@/components/DialogMediaSlider';
+const DialogMediaSlider = dynamic(() => import('@/components/DialogMediaSlider'), {ssr: false});
 
 interface MediaGalleryProps {
   images: {src: string; alt: string}[];

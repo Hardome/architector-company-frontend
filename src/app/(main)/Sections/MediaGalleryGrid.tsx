@@ -1,9 +1,10 @@
 'use client';
 
 import {Fragment, useState} from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
-import {DialogMediaSlider} from '@/components/DialogMediaSlider';
+const DialogMediaSlider = dynamic(() => import('@/components/DialogMediaSlider'), {ssr: false});
 
 interface MediaItem {
   src: string;
@@ -20,10 +21,6 @@ const MediaGalleryGrid = ({mediaItems}: MediaGalleryGridProps) => {
 
   const openLightbox = (index: number) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
-
-  const handleThumbnailClick = (index: number) => {
-    setLightboxIndex(index);
-  };
 
   return (
     <Fragment>
@@ -62,7 +59,7 @@ const MediaGalleryGrid = ({mediaItems}: MediaGalleryGridProps) => {
             }
             currentIndex={lightboxIndex}
             onClose={closeLightbox}
-            onThumbnailClick={handleThumbnailClick}
+            onThumbnailClick={openLightbox}
             showThumbnails={true}
             showCounter={true}
           />

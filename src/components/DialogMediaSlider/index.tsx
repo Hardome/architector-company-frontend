@@ -29,14 +29,14 @@ interface DialogMediaSliderProps {
   showCounter?: boolean;
 }
 
-export function DialogMediaSlider({
+const DialogMediaSlider = ({
   images,
   currentIndex,
   onClose,
   onThumbnailClick,
   showThumbnails = true,
   showCounter = true
-}: DialogMediaSliderProps) {
+}: DialogMediaSliderProps) => {
   const [thumbs, setThumbs] = useState<SwiperType | null>(null);
   const mainSwiperRef = useRef<SwiperType | null>(null);
   const isOpen = currentIndex !== null && currentIndex !== undefined && currentIndex >= 0;
@@ -195,4 +195,6 @@ export function DialogMediaSlider({
       </DialogPortal>
     </Dialog>
   );
-}
+};
+
+export default DialogMediaSlider;

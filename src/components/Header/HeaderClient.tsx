@@ -75,6 +75,7 @@ export default function HeaderClient() {
                 variant={'text'}
                 size={'lg'}
                 className={'lg:hidden p-2 text-white hover:text-gray-300 transition-colors'}
+                title={'Список навигации'}
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </Button>

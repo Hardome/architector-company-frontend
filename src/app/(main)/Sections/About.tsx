@@ -81,8 +81,8 @@ export default function AboutSection() {
                   <Image
                     src={item.image}
                     alt={item.alt}
-                    width={1080}
-                    height={720}
+                    width={720}
+                    height={480}
                     className={
                       'w-full h-full object-cover hover:scale-105 ' +
                       'transition-transform duration-500'

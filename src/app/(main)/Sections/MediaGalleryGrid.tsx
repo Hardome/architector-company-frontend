@@ -41,8 +41,8 @@ const MediaGalleryGrid = ({mediaItems}: MediaGalleryGridProps) => {
               <Image
                 src={item.src}
                 alt={item.alt}
-                width={500}
-                height={500}
+                width={300}
+                height={300}
                 className={
                   'w-full h-full object-cover group-hover:scale-110 ' +
                   'transition-transform duration-300'

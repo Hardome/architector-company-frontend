@@ -11,7 +11,9 @@ import './globals.css';
 const cormorant = Cormorant({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin', 'cyrillic'],
-  variable: '--font-cormorant'
+  variable: '--font-cormorant',
+  preload: true,
+  display: 'swap'
 });
 
 const houschkaPro = localFont({
@@ -20,7 +22,8 @@ const houschkaPro = localFont({
     weight: '500',
     style: 'normal'
   }],
-  variable: '--font-houschka'
+  variable: '--font-houschka',
+  preload: true
 });
 
 export const metadata: Metadata = {
@@ -53,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={'ru'}>
-      <body className={`${cormorant.className} ${houschkaPro.variable} antialiased`}>
+      <body className={`${cormorant.variable} ${houschkaPro.variable} antialiased`}>
         <Header />
         {children}
         <Footer />

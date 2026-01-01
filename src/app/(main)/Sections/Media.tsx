@@ -22,7 +22,7 @@ const MediaGallery = () => (
           {/* <p className={'text-muted-foreground'}>{'Видео обзор поселка'}</p> */}
           <video
             title={'Обзор поселка'}
-            src={'/review.mp4'}
+            src={'/review.webm'}
             controls={true}
             playsInline={true}
             poster={'/walkingArea.webp'}

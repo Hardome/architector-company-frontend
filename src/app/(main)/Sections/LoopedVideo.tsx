@@ -6,7 +6,7 @@ export default function LoopedVideoSection() {
     <section className={'relative h-[100vh] w-full md:h-screen overflow-hidden'}>
       <video
         className={'absolute inset-0 h-full w-full object-cover opacity-70'}
-        src={'/interview.mp4'}
+        src={'/interview.webm'}
         autoPlay={true}
         muted={true}
         loop={true}

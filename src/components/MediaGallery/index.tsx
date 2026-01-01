@@ -12,7 +12,7 @@ interface MediaGalleryProps {
   images: {src: string; alt: string}[];
 }
 
-export function MediaGallery({images}: MediaGalleryProps) {
+const MediaGallery = ({images}: MediaGalleryProps) => {
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -68,4 +68,6 @@ export function MediaGallery({images}: MediaGalleryProps) {
       />
     </React.Fragment>
   );
-}
+};
+
+export default MediaGallery;

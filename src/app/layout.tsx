@@ -12,8 +12,8 @@ const cormorant = Cormorant({
   weight: ['400', '500', '700'],
   subsets: ['latin', 'cyrillic'],
   variable: '--font-cormorant',
-  preload: true,
-  display: 'swap'
+  preload: true, /* заренее начинает грузить шрифт (<link rel="preload" as="font">) */
+  display: 'swap' /* позволяет отображать сначала системный шрифт без ожидания окончани загрузки кастомного, затем заменяет на кастомный */
 });
 
 const houschkaPro = localFont({
@@ -32,21 +32,20 @@ export const metadata: Metadata = {
   description: 'ELLORIA - это посёлок с уникальной архитектурой и инфраструктурой для комфортного проживания',
   keywords: ['ELLORIA', 'ЖК', 'Тюмень', 'Посёлок', 'Купить дом', 'Продажа домов', 'Дома', 'Архитектура', 'Инфраструктура', 'Комфортное проживание'],
   openGraph: {
-    title: 'ELLORIA - Жилой посёлок в Тюмени',
-    description: 'ELLORIA - это посёлок с уникальной архитектурой и инфраструктурой для комфортного проживания',
+    title: 'ELLORIA — Жилой посёлок в Тюмени',
+    description: 'ELLORIA — посёлок с уникальной архитектурой и инфраструктурой для комфортного проживания',
     url: 'https://elloria.ru/',
-    siteName: 'ELLORIA - Жилой посёлок в Тюмени',
-    // images: [
-    //   {
-    //     url: 'https://elloria.ru/architecture.png',
-    //     width: 1200,
-    //     height: 630,
-    //     alt: 'Изображение для соцсетей'
-    //   }
-    // ],
+    siteName: 'ELLORIA',
+    images: [
+      {
+        url: 'https://elloria.ru/topPerspective3.webp',
+        width: 1200,
+        height: 630,
+        alt: 'ELLORIA — вид сверху'
+      }
+    ],
     locale: 'ru_RU',
-    type: 'website',
-    countryName: 'Россия'
+    type: 'website'
   }
 };
 

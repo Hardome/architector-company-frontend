@@ -2,11 +2,13 @@
 
 import {useState} from 'react';
 import {MapPin} from 'lucide-react';
+import dynamic from 'next/dynamic';
 
 import ContactDialog from '@/components/ContactDialog';
-import {MediaGallery} from '@/components/MediaGallery';
 import {Button} from '@/components/ui/button';
 import {H2, H3, P} from '@/components/ui/typography';
+
+const MediaGallery = dynamic(() => import('@/components/MediaGallery'), {ssr: false});
 
 const generateProjectImages = (
   folderName: string,

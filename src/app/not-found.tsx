@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <main className={'flex flex-col items-center justify-center min-h-screen'}>
       <section className={'rounded-2xl bg-card p-10'}>
-        <H1 className={'text-4xl font-bold mb-4'}>{'Страница не найдена'}</H1>
+        <H1 variant={'page'} className={'mb-4'}>{'Страница не найдена'}</H1>
         <P className={'text-lg mb-8'}>
           {'К сожалению, запрашиваемая страница не существует.'}
         </P>

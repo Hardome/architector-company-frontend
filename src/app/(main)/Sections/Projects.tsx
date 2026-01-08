@@ -73,27 +73,29 @@ const ProjectsSection = () => {
   return (
     <section id={'projects'} className={'py-20 lg:py-32 bg-background'}>
       <div className={'container mx-auto px-4 lg:px-8'}>
-        <H2 className={'lg:text-5xl font-normal text-center mb-16 text-primary'}>
+        <H2 variant={'section'} className={'mb-16 text-primary'}>
           {'Проекты'}
         </H2>
         <div className={'grid md:grid-cols-2 gap-8 lg:gap-12'}>
           {
             projects.map((project) => (
-              <div
+              <article
                 key={project.id}
                 className={
                   'bg-card rounded-2xl overflow-hidden shadow-soft ' +
                   'hover:shadow-medium transition-shadow'
                 }
+                itemScope={true}
+                itemType={'https://schema.org/Product'}
               >
                 {/* Image Gallery */}
-                <div className={'relative aspect-[4/3] overflow-hidden group h-100px'}>
+                <div className={'relative aspect-[4/3] overflow-hidden group'}>
                   <MediaGallery images={project.images} />
                 </div>
 
                 {/* Content */}
                 <div className={'p-6 lg:p-8 space-y-6'}>
-                  <H3 className={'text-card-foreground font-normal text-3xl'}>
+                  <H3 variant={'card'} className={'text-card-foreground'} itemProp={'name'}>
                     {project.name}
                   </H3>
 
@@ -139,7 +141,15 @@ const ProjectsSection = () => {
                   </div> */}
 
                   <div className={'pt-4 border-t border-border'}>
-                    <P className={'text-3xl font-bold text-accent mb-4 text-secondary'}>
+                    <P
+                      variant={'price'}
+                      className={'mb-4'}
+                      itemProp={'offers'}
+                      itemScope={true}
+                      itemType={'https://schema.org/Offer'}
+                    >
+                      <meta itemProp={'price'} content={project.price.replace(/\D/g, '')} />
+                      <meta itemProp={'priceCurrency'} content={'RUB'} />
                       {project.price}
                     </P>
                     <Button
@@ -151,7 +161,7 @@ const ProjectsSection = () => {
                     </Button>
                   </div>
                 </div>
-              </div>
+              </article>
             ))
           }
         </div>
@@ -161,7 +171,7 @@ const ProjectsSection = () => {
           <div className={'aspect-video bg-muted flex items-center justify-center'}>
             <div className={'text-center space-y-2'}>
               <MapPin className={'mx-auto text-muted-foreground'} size={48} />
-              <P className={'text-muted-foreground'}>{'Интерактивная карта поселка'}</P>
+              <P variant={'muted'}>{'Интерактивная карта поселка'}</P>
             </div>
           </div>
         </div>

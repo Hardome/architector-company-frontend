@@ -1,3 +1,5 @@
+import {H2} from '@/components/ui/typography';
+
 import MediaGalleryGrid from './MediaGalleryGrid';
 
 const mediaItems = [
@@ -13,13 +15,12 @@ const mediaItems = [
 const MediaGallery = () => (
   <section id={'media'} className={'py-20 lg:py-32 bg-muted/30'}>
     <div className={'container mx-auto px-4 lg:px-8'}>
-      <h2 className={'text-3xl lg:text-5xl text-center mb-16 text-primary'}>
+      <H2 variant={'section'} className={'mb-16 text-primary'}>
         {'Медиа'}
-      </h2>
+      </H2>
 
       <div className={'mb-12 rounded-2xl overflow-hidden shadow-medium'}>
         <div className={'aspect-video bg-muted flex items-center justify-center'}>
-          {/* <p className={'text-muted-foreground'}>{'Видео обзор поселка'}</p> */}
           <video
             title={'Обзор поселка'}
             src={'/review.webm'}
@@ -28,6 +29,7 @@ const MediaGallery = () => (
             poster={'/walkingArea.webp'}
             preload={'metadata'}
             className={'w-full h-full object-cover'}
+            aria-label={'Видео обзор поселка ELLORIA'}
           />
         </div>
       </div>

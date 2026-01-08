@@ -1,97 +1,136 @@
-import React, {forwardRef, type JSX} from 'react';
+/* eslint-disable react/no-multi-comp */
+import React, {forwardRef} from 'react';
+import {cva, type VariantProps} from 'class-variance-authority';
 
 import {cn} from '@/lib/utils';
 
-const createComponent = <T extends HTMLElement>(
-  tag: keyof JSX.IntrinsicElements,
-  defaultClassName: string,
-  displayName: string
-) => {
-  const Component = forwardRef<T, React.HTMLAttributes<T>>((props, ref) => React.createElement(
-    tag,
-    {...props, ref, className: cn(defaultClassName, props.className)},
-    props.children
-  ));
+const h1Variants = cva('scroll-m-20 tracking-tight', {
+  variants: {
+    variant: {
+      default: 'text-4xl font-extrabold lg:text-5xl',
+      hero: 'md:text-5xl lg:text-7xl font-bold text-white drop-shadow-lg ' +
+        'text-balance font-normal whitespace-pre-line',
+      page: 'text-4xl font-bold'
+    }
+  },
+  defaultVariants: {
+    variant: 'default'
+  }
+});
 
-  Component.displayName = displayName;
+const h2Variants = cva('scroll-m-20 tracking-tight first:mt-0', {
+  variants: {
+    variant: {
+      default: 'py-2 text-3xl font-semibold',
+      section: 'text-3xl lg:text-5xl text-center font-normal',
+      card: 'text-3xl lg:text-5xl text-center lg:mb-12 font-medium'
+    }
+  },
+  defaultVariants: {
+    variant: 'default'
+  }
+});
 
-  return Component;
-};
+const h3Variants = cva('scroll-m-20 tracking-tight', {
+  variants: {
+    variant: {
+      default: 'text-2xl font-semibold',
+      footer: 'text-xl font-bold',
+      footerLarge: 'text-2xl font-bold',
+      card: 'text-2xl lg:text-3xl font-normal'
+    }
+  },
+  defaultVariants: {
+    variant: 'default'
+  }
+});
 
-export const H1 = createComponent<HTMLHeadingElement>(
-  'h1',
-  'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl',
-  'H1'
+const pVariants = cva('', {
+  variants: {
+    variant: {
+      default: '',
+      muted: 'text-muted-foreground',
+      price: 'text-3xl font-bold text-secondary',
+      small: 'text-xs text-gray-500 text-center',
+      body: 'lg:text-xl leading-relaxed text-light-text whitespace-pre-line ' +
+        'font-houschka text-center lg:text-left'
+    }
+  },
+  defaultVariants: {
+    variant: 'default'
+  }
+});
+
+const leadVariants = cva('text-xl text-muted-foreground', {
+  variants: {
+    variant: {
+      default: '',
+      hero: 'md:text-2xl lg:text-2xl text-white/95 drop-shadow-md ' +
+        'text-balance font-light font-houschka'
+    }
+  },
+  defaultVariants: {
+    variant: 'default'
+  }
+});
+
+type H1Props = React.HTMLAttributes<HTMLHeadingElement> & VariantProps<typeof h1Variants>;
+type H2Props = React.HTMLAttributes<HTMLHeadingElement> & VariantProps<typeof h2Variants>;
+type H3Props = React.HTMLAttributes<HTMLHeadingElement> & VariantProps<typeof h3Variants>;
+type PProps = React.HTMLAttributes<HTMLParagraphElement> & VariantProps<typeof pVariants>;
+type LeadProps = React.HTMLAttributes<HTMLParagraphElement> & VariantProps<typeof leadVariants>;
+
+export const H1 = forwardRef<HTMLHeadingElement, H1Props>(
+  ({className, variant, ...props}, ref) => (
+    <h1
+      ref={ref}
+      className={cn(h1Variants({variant}), className)}
+      {...props}
+    />
+  )
 );
+H1.displayName = 'H1';
 
-export const H2 = createComponent<HTMLHeadingElement>(
-  'h2',
-  'scroll-m-20 py-2 text-3xl font-semibold tracking-tight first:mt-0',
-  'H2'
+export const H2 = forwardRef<HTMLHeadingElement, H2Props>(
+  ({className, variant, ...props}, ref) => (
+    <h2
+      ref={ref}
+      className={cn(h2Variants({variant}), className)}
+      {...props}
+    />
+  )
 );
+H2.displayName = 'H2';
 
-export const H3 = createComponent<HTMLHeadingElement>(
-  'h3',
-  'scroll-m-20 text-2xl font-semibold tracking-tight',
-  'H3'
+export const H3 = forwardRef<HTMLHeadingElement, H3Props>(
+  ({className, variant, ...props}, ref) => (
+    <h3
+      ref={ref}
+      className={cn(h3Variants({variant}), className)}
+      {...props}
+    />
+  )
 );
+H3.displayName = 'H3';
 
-export const H4 = createComponent<HTMLHeadingElement>(
-  'h4',
-  'scroll-m-20 text-xl font-semibold tracking-tight',
-  'H4'
+export const Lead = forwardRef<HTMLParagraphElement, LeadProps>(
+  ({className, variant, ...props}, ref) => (
+    <p
+      ref={ref}
+      className={cn(leadVariants({variant}), className)}
+      {...props}
+    />
+  )
 );
+Lead.displayName = 'Lead';
 
-export const Lead = createComponent<HTMLParagraphElement>(
-  'p',
-  'text-xl text-muted-foreground',
-  'Lead'
+export const P = forwardRef<HTMLParagraphElement, PProps>(
+  ({className, variant, ...props}, ref) => (
+    <p
+      ref={ref}
+      className={cn(pVariants({variant}), className)}
+      {...props}
+    />
+  )
 );
-
-export const P = createComponent<HTMLParagraphElement>(
-  'p',
-  '',
-  'P'
-);
-
-export const Large = createComponent<HTMLDivElement>(
-  'div',
-  'text-lg font-semibold',
-  'Large'
-);
-
-export const Small = createComponent<HTMLParagraphElement>(
-  'p',
-  'text-sm font-medium leading-none',
-  'Small'
-);
-
-export const Muted = createComponent<HTMLSpanElement>(
-  'span',
-  'text-sm text-muted-foreground',
-  'Muted'
-);
-
-export const InlineCode = createComponent<HTMLSpanElement>(
-  'code',
-  'relative rounded-sm bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold',
-  'InlineCode'
-);
-
-export const MultilineCode = createComponent<HTMLPreElement>(
-  'pre',
-  'relative rounded-sm bg-muted p-4 font-mono text-sm font-semibold overflow-x-auto',
-  'MultilineCode'
-);
-
-export const List = createComponent<HTMLUListElement>(
-  'ul',
-  'my-6 ml-6 list-disc [&>li]:mt-2',
-  'List'
-);
-
-export const Quote = createComponent<HTMLQuoteElement>(
-  'blockquote',
-  'mt-6 border-l-2 pl-6 italic text-muted-foreground',
-  'Quote'
-);
+P.displayName = 'P';

@@ -122,7 +122,7 @@ const ContactDialog = ({isOpen, onClose, payload}: ContactDialogProps) => {
             placeholder={'+7 (___) ___-__-__'}
             title={'Введите номер в формате: +7 (999) 999-99-99'}
           />
-          <P className={'text-xs text-gray-500 text-center'}>
+          <P variant={'small'}>
             {'Я даю согласие на обработку персональных данных'}
           </P>
           <Button

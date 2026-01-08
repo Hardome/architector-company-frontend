@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   title: 'ELLORIA - Жилой посёлок в Тюмени',
   description: 'ELLORIA - это посёлок с уникальной архитектурой и инфраструктурой для комфортного проживания',
   keywords: ['ELLORIA', 'ЖК', 'Тюмень', 'Посёлок', 'Купить дом', 'Продажа домов', 'Дома', 'Архитектура', 'Инфраструктура', 'Комфортное проживание'],
+  alternates: {
+    canonical: 'https://elloria.ru/'
+  },
   openGraph: {
     title: 'ELLORIA — Жилой посёлок в Тюмени',
     description: 'ELLORIA — посёлок с уникальной архитектурой и инфраструктурой для комфортного проживания',
@@ -46,6 +49,12 @@ export const metadata: Metadata = {
     ],
     locale: 'ru_RU',
     type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ELLORIA — Жилой посёлок в Тюмени',
+    description: 'ELLORIA — посёлок с уникальной архитектурой и инфраструктурой для комфортного проживания',
+    images: ['https://elloria.ru/topPerspective3.webp']
   }
 };
 
@@ -54,6 +63,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang={'ru'}>
       <body className={`${cormorant.variable} ${houschkaPro.variable} antialiased`}>

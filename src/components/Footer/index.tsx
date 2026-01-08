@@ -5,12 +5,18 @@ import {Mail, MapPin, MessageCircle, Phone} from 'lucide-react';
 
 import ContactDialog from '@/components/ContactDialog';
 import {Button} from '@/components/ui/button';
+import {H3} from '@/components/ui/typography';
 
 const documents = [
   {name: 'Проектная декларация', url: '#'},
   {name: 'Разрешение на строительство', url: '#'},
   {name: 'Договор долевого участия', url: '#'},
   {name: 'Градостроительный план', url: '#'}
+];
+
+const messengers = [
+  {href: 'https://wa.me/', label: 'WhatsApp'},
+  {href: 'https://t.me/', label: 'Telegram'}
 ];
 
 const Footer = () => {
@@ -23,7 +29,7 @@ const Footer = () => {
           <div className={'grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12'}>
             {/* About Company */}
             <div className={'space-y-4'}>
-              <h3 className={'text-2xl font-bold'}>{'ELLORIA'}</h3>
+              <H3 variant={'footerLarge'}>{'ELLORIA'}</H3>
               <p className={'text-primary-foreground/80 text-sm'}>
                 {'Строительная компания с 15-летним опытом. Реализовано более 30\r'}
                 {'успешных проектов.\r'}
@@ -35,7 +41,7 @@ const Footer = () => {
 
             {/* Documents */}
             <div id={'documents'} className={'space-y-4'}>
-              <h3 className={'text-xl font-bold'}>{'Документы'}</h3>
+              <H3 variant={'footer'}>{'Документы'}</H3>
               <ul className={'space-y-2'}>
                 {
                   documents.map((doc) => (
@@ -58,62 +64,65 @@ const Footer = () => {
             </div>
 
             {/* Contacts */}
-            <div id={'contacts'} className={'space-y-4'}>
-              <h3 className={'text-xl font-bold'}>{'Контакты'}</h3>
+            <address id={'contacts'} className={'space-y-4 not-italic'}>
+              <H3 variant={'footer'}>{'Контакты'}</H3>
               <div className={'space-y-3 text-sm text-primary-foreground/80'}>
                 <div className={'flex items-start gap-3'}>
-                  <MapPin size={18} className={'mt-1 flex-shrink-0'} />
-                  <span>{'г. Тюмень, ул. ????, д. ??'}</span>
+                  <MapPin size={18} className={'mt-1 flex-shrink-0'} aria-hidden={'true'} />
+                  <span
+                    itemProp={'address'}
+                    itemScope={true}
+                    itemType={'https://schema.org/PostalAddress'}
+                  >
+                    <span itemProp={'addressLocality'}>{'Тюмень'}</span>
+                    {', '}
+                    <span itemProp={'streetAddress'}>{'ул. ????, д. ??'}</span>
+                  </span>
                 </div>
                 <div className={'flex items-center gap-3'}>
-                  <Phone size={18} className={'flex-shrink-0'} />
+                  <Phone size={18} className={'flex-shrink-0'} aria-hidden={'true'} />
                   <a
                     href={'tel:+74951234567'}
                     className={'hover:text-primary-foreground transition-colors'}
+                    itemProp={'telephone'}
                   >
                     {'+7 (495) 123-45-67\r'}
                   </a>
                 </div>
                 <div className={'flex items-center gap-3'}>
-                  <Mail size={18} className={'flex-shrink-0'} />
+                  <Mail size={18} className={'flex-shrink-0'} aria-hidden={'true'} />
                   <a
                     href={'mailto:info@example.ru'}
                     className={'hover:text-primary-foreground transition-colors'}
+                    itemProp={'email'}
                   >
                     {'info@example.ru\r'}
                   </a>
                 </div>
               </div>
-            </div>
+            </address>
 
             {/* Messengers & CTA */}
             <div className={'space-y-4'}>
-              <h3 className={'text-xl font-bold'}>{'Связаться с нами'}</h3>
+              <H3 variant={'footer'}>{'Связаться с нами'}</H3>
               <div className={'flex gap-3'}>
-                <a
-                  href={'https://wa.me/'}
-                  target={'_blank'}
-                  rel={'noopener noreferrer'}
-                  className={
-                    'w-10 h-10 rounded-full bg-primary-foreground/10 ' +
-                    'hover:bg-primary-foreground/20 transition-colors ' +
-                    'flex items-center justify-center'
-                  }
-                >
-                  <MessageCircle size={20} />
-                </a>
-                <a
-                  href={'https://t.me/'}
-                  target={'_blank'}
-                  rel={'noopener noreferrer'}
-                  className={
-                    'w-10 h-10 rounded-full bg-primary-foreground/10 ' +
-                    'hover:bg-primary-foreground/20 transition-colors ' +
-                    'flex items-center justify-center'
-                  }
-                >
-                  <MessageCircle size={20} />
-                </a>
+                {
+                  messengers.map((messenger) => (
+                    <a
+                      key={messenger.label}
+                      href={messenger.href}
+                      target={'_blank'}
+                      rel={'noopener noreferrer'}
+                      className={
+                        'w-10 h-10 rounded-full bg-primary-foreground/10 ' +
+                      'hover:bg-primary-foreground/20 transition-colors ' +
+                      'flex items-center justify-center'
+                      }
+                    >
+                      <MessageCircle size={20} />
+                    </a>
+                  ))
+                }
               </div>
               <Button
                 onClick={() => setIsModalOpen(true)}

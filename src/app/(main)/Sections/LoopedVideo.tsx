@@ -3,7 +3,10 @@ import {H1, Lead} from '@/components/ui/typography';
 
 export default function LoopedVideoSection() {
   return (
-    <section className={'relative h-[100vh] w-full md:h-screen overflow-hidden'}>
+    <section
+      aria-label={'Главная секция с видео'}
+      className={'relative h-[100vh] w-full md:h-screen overflow-hidden'}
+    >
       <video
         className={'absolute inset-0 h-full w-full object-cover opacity-70'}
         src={'/interview.webm'}
@@ -11,24 +14,15 @@ export default function LoopedVideoSection() {
         muted={true}
         loop={true}
         playsInline={true}
+        aria-label={'Видео презентация поселка ELLORIA'}
       />
       <div className={'absolute inset-0 bg-black/40'} />
       <div className={'relative h-full flex flex-col items-center justify-center px-4 text-center'}>
         <div className={'max-w-4xl space-y-6 animate-fade-in'}>
-          <H1
-            className={
-              'md:text-5xl lg:text-7xl font-bold text-white ' +
-              'drop-shadow-lg text-balance font-normal'
-            }
-          >
-            {'Дружелюбный поселок в пяти минутах от города'}
+          <H1 variant={'hero'}>
+            {'Дружелюбный поселок \nв пяти минутах от города'}
           </H1>
-          <Lead
-            className={
-              'md:text-2xl lg:text-2xl ' +
-              'text-white/95 drop-shadow-md text-balance font-light font-houschka'
-            }
-          >
+          <Lead variant={'hero'}>
             {'Ваш дом — место наполнения энергией'}
           </Lead>
           <ChooseHouseButton size={'4xl'} className={'rounded-full mt-4 text-xl'} />

@@ -2,6 +2,7 @@
 
 import React, {useState} from 'react';
 import {Menu, Phone, X} from 'lucide-react';
+import Link from 'next/link';
 
 import ChooseHouseButton from '@/components/ChooseHouseButton';
 import {Button} from '@/components/ui/button';
@@ -37,14 +38,15 @@ export default function HeaderClient() {
       >
         <div className={'container mx-auto px-4 lg:px-8'}>
           <div className={'flex items-center justify-between h-18'}>
-            <Button
+            <Link
+              href={'/'}
               onClick={scrollToTop}
-              variant={'text'}
               className={'text-xl lg:text-2xl font-bold hover:opacity-80 transition-opacity'}
+              aria-label={'ELLORIA - перейти на главную страницу'}
             >
               {'ELLORIA'}
-            </Button>
-            <nav className={'hidden lg:flex items-center gap-8'}>
+            </Link>
+            <nav className={'hidden lg:flex items-center gap-8'} aria-label={'Основная навигация'}>
               {
                 MENU_ITEMS.map((item) => (
                   <Button
@@ -52,6 +54,7 @@ export default function HeaderClient() {
                     onClick={() => scrollToSection(item.id)}
                     className={'text-lg text-white hover:text-gray-300 transition-colors'}
                     variant={'text'}
+                    aria-label={`Перейти к разделу ${item.label}`}
                   >
                     {item.label}
                   </Button>

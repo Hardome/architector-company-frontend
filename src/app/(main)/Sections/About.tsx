@@ -50,7 +50,7 @@ export default function AboutSection() {
         <div className={'space-y-20 lg:space-y-32'}>
           {
             aboutContent.map((item, index) => (
-              <div
+              <article
               // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 className={
@@ -60,21 +60,16 @@ export default function AboutSection() {
                 }
               >
                 <div className={'space-y-4 lg:w-1/2 flex flex-col justify-center lg:px-15'}>
-                  <H2 className={'text-3xl lg:text-5xl text-center lg:mb-12 font-medium'}>
+                  <H2 variant={'card'}>
                     {item.title}
                   </H2>
-                  <P
-                    className={
-                      'lg:text-xl leading-relaxed text-light-text whitespace-pre-line ' +
-                      'font-houschka text-center lg:text-left'
-                    }
-                  >
+                  <P variant={'body'}>
                     {item.text}
                   </P>
                 </div>
                 <div
                   className={
-                    'lg:aspect-10/5 rounded-2xl overflow-hidden shadow-medium ' +
+                    'lg:aspect-[2/1] rounded-2xl overflow-hidden shadow-medium ' +
                     'lg:w-1/2 lg:min-h-[480px]'
                   }
                 >
@@ -90,7 +85,7 @@ export default function AboutSection() {
                     sizes={'(max-width: 1024px) 100vw, 50vw'}
                   />
                 </div>
-              </div>
+              </article>
             ))
           }
         </div>

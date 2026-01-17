@@ -39,12 +39,12 @@ export const metadata: Metadata = {
     }
   },
   alternates: {
-    canonical: 'https://elloria.ru/'
+    canonical: 'https://elloria.ru'
   },
   openGraph: {
     title: 'ELLORIA — Жилой посёлок в Тюмени',
     description: 'ELLORIA — посёлок с уникальной архитектурой и инфраструктурой для комфортного проживания',
-    url: 'https://elloria.ru/',
+    url: 'https://elloria.ru',
     siteName: 'ELLORIA',
     images: [
       {

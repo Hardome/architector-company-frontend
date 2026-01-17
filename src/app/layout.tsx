@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   title: 'ELLORIA - Жилой посёлок в Тюмени',
   description: 'ELLORIA - это посёлок с уникальной архитектурой и инфраструктурой для комфортного проживания',
   keywords: ['ELLORIA', 'ЖК', 'Тюмень', 'Посёлок', 'Купить дом', 'Продажа домов', 'Дома', 'Архитектура', 'Инфраструктура', 'Комфортное проживание'],
+  icons: {
+    icon: '/favicon.ico'
+  },
   alternates: {
     canonical: 'https://elloria.ru/'
   },

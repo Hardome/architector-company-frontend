@@ -1,7 +1,7 @@
 'use client';
 
 import {useEffect, useRef, useState} from 'react';
-import {X} from 'lucide-react';
+import {X, ZoomIn, ZoomOut} from 'lucide-react';
 import Image from 'next/image';
 import type {Swiper as SwiperType} from 'swiper';
 import {Keyboard, Navigation, Thumbs, Zoom} from 'swiper/modules';
@@ -14,6 +14,10 @@ import 'swiper/css/zoom';
 
 import {Button} from '@/components/ui/button';
 import {Dialog, DialogOverlay, DialogPortal} from '@/components/ui/dialog';
+
+const ZOOM_STEPS = [1, 1.25, 1.5, 2, 2.5, 3] as const;
+const MIN_ZOOM = ZOOM_STEPS[0];
+const MAX_ZOOM = ZOOM_STEPS[ZOOM_STEPS.length - 1];
 
 interface ImageItem {
   src: string;
@@ -38,8 +42,41 @@ const DialogMediaSlider = ({
   showCounter = true
 }: DialogMediaSliderProps) => {
   const [thumbs, setThumbs] = useState<SwiperType | null>(null);
+  const [zoomScale, setZoomScale] = useState(1);
   const mainSwiperRef = useRef<SwiperType | null>(null);
   const isOpen = currentIndex !== null && currentIndex !== undefined && currentIndex >= 0;
+
+  const zoomIn = () => {
+    const swiper = mainSwiperRef.current;
+
+    if (!swiper?.zoom?.enabled) {
+      return;
+    }
+
+    const next = ZOOM_STEPS.find((s) => s > zoomScale) ?? MAX_ZOOM;
+
+    if (next > zoomScale) {
+      swiper.zoom.in(next);
+    }
+  };
+
+  const zoomOut = () => {
+    const swiper = mainSwiperRef.current;
+
+    if (!swiper?.zoom?.enabled) {
+      return;
+    }
+
+    const prev = [...ZOOM_STEPS].reverse().find((s) => s < zoomScale) ?? MIN_ZOOM;
+
+    if (prev < zoomScale) {
+      if (prev === 1) {
+        swiper.zoom.out();
+      } else {
+        swiper.zoom.in(prev);
+      }
+    }
+  };
 
   useEffect(() => {
     if (
@@ -55,9 +92,10 @@ const DialogMediaSlider = ({
   useEffect(() => {
     if (!isOpen) {
       mainSwiperRef.current = null;
-
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+      /* eslint-disable react-hooks/set-state-in-effect -- reset on close */
+      setZoomScale(1);
       setThumbs(null);
+      /* eslint-enable react-hooks/set-state-in-effect */
     }
   }, [isOpen]);
 
@@ -67,6 +105,16 @@ const DialogMediaSlider = ({
     if (onThumbnailClick) {
       onThumbnailClick(newIndex);
     }
+  };
+
+  const handleSwiperInit = (swiper: SwiperType) => {
+    mainSwiperRef.current = swiper;
+    swiper.on('zoomChange', (_s, scale) => {
+      setZoomScale(scale);
+    });
+    swiper.on('slideChange', () => {
+      setZoomScale(1);
+    });
   };
 
   if (!isOpen) {
@@ -87,15 +135,57 @@ const DialogMediaSlider = ({
                   {' / '}
                   {images.length}
                 </span>
-                <Button variant={'ghost'} size={'icon'} onClick={onClose}>
-                  <X />
-                </Button>
+                <div className={'flex items-center gap-1'}>
+                  <Button
+                    variant={'ghost'}
+                    size={'icon'}
+                    onClick={zoomOut}
+                    disabled={zoomScale <= MIN_ZOOM}
+                    className={'text-white'}
+                    aria-label={'Уменьшить'}
+                  >
+                    <ZoomOut />
+                  </Button>
+                  <Button
+                    variant={'ghost'}
+                    size={'icon'}
+                    onClick={zoomIn}
+                    disabled={zoomScale >= MAX_ZOOM}
+                    className={'text-white'}
+                    aria-label={'Увеличить'}
+                  >
+                    <ZoomIn />
+                  </Button>
+                  <Button variant={'ghost'} size={'icon'} onClick={onClose}>
+                    <X />
+                  </Button>
+                </div>
               </div>
             )
           }
           {
             !showCounter && (
-              <div className={'flex justify-end items-center p-4'}>
+              <div className={'flex justify-end items-center gap-1 p-4'}>
+                <Button
+                  variant={'ghost'}
+                  size={'icon'}
+                  onClick={zoomOut}
+                  disabled={zoomScale <= MIN_ZOOM}
+                  className={'text-white'}
+                  aria-label={'Уменьшить'}
+                >
+                  <ZoomOut />
+                </Button>
+                <Button
+                  variant={'ghost'}
+                  size={'icon'}
+                  onClick={zoomIn}
+                  disabled={zoomScale >= MAX_ZOOM}
+                  className={'text-white'}
+                  aria-label={'Увеличить'}
+                >
+                  <ZoomIn />
+                </Button>
                 <Button
                   variant={'ghost'}
                   size={'icon'}
@@ -114,14 +204,16 @@ const DialogMediaSlider = ({
               modules={[Navigation, Thumbs, Zoom, Keyboard]}
               navigation={true}
               thumbs={{swiper: thumbs}}
-              zoom={true}
-              keyboard={true}
-              initialSlide={currentIndex}
-              onSwiper={
-                (swiper) => {
-                  mainSwiperRef.current = swiper;
+              zoom={
+                {
+                  maxRatio: MAX_ZOOM,
+                  minRatio: MIN_ZOOM,
+                  panOnMouseMove: false
                 }
               }
+              keyboard={true}
+              initialSlide={currentIndex}
+              onSwiper={handleSwiperInit}
               onSlideChange={handleSlideChange}
               className={'h-full'}
               style={

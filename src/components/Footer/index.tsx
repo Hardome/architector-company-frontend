@@ -1,11 +1,13 @@
 'use client';
 
 import React, {useState} from 'react';
-import {Mail, MapPin, MessageCircle, Phone} from 'lucide-react';
+import {Mail, MapPin, Phone} from 'lucide-react';
 
 import ContactDialog from '@/components/ContactDialog';
+import TelegramIcon from '@/components/icons/TelegramIcon';
 import {Button} from '@/components/ui/button';
 import {H3} from '@/components/ui/typography';
+import {COMPANY} from '@/lib/constants';
 
 const documents = [
   {name: 'Проектная декларация', url: '#'},
@@ -15,8 +17,8 @@ const documents = [
 ];
 
 const messengers = [
-  {href: 'https://wa.me/', label: 'WhatsApp'},
-  {href: 'https://t.me/', label: 'Telegram'}
+  // {href: 'https://wa.me/', label: 'Max'},
+  {href: COMPANY.tgHref, label: 'Telegram'}
 ];
 
 const Footer = () => {
@@ -35,7 +37,8 @@ const Footer = () => {
                 {'успешных проектов.\r'}
               </p>
               <p className={'text-xs text-primary-foreground/60'}>
-                {'ООО "????"\r'}
+                {COMPANY.name}
+                {COMPANY.inn && ` ИНН ${COMPANY.inn}`}
               </p>
             </div>
 
@@ -74,29 +77,27 @@ const Footer = () => {
                     itemScope={true}
                     itemType={'https://schema.org/PostalAddress'}
                   >
-                    <span itemProp={'addressLocality'}>{'Тюмень'}</span>
-                    {', '}
-                    <span itemProp={'streetAddress'}>{'ул. ????, д. ??'}</span>
+                    <span itemProp={'streetAddress'}>{COMPANY.address}</span>
                   </span>
                 </div>
                 <div className={'flex items-center gap-3'}>
                   <Phone size={18} className={'flex-shrink-0'} aria-hidden={'true'} />
                   <a
-                    href={'tel:+74951234567'}
+                    href={COMPANY.phoneHref}
                     className={'hover:text-primary-foreground transition-colors'}
                     itemProp={'telephone'}
                   >
-                    {'+7 (495) 123-45-67\r'}
+                    {COMPANY.phone}
                   </a>
                 </div>
                 <div className={'flex items-center gap-3'}>
                   <Mail size={18} className={'flex-shrink-0'} aria-hidden={'true'} />
                   <a
-                    href={'mailto:info@example.ru'}
+                    href={`mailto:${COMPANY.email}`}
                     className={'hover:text-primary-foreground transition-colors'}
                     itemProp={'email'}
                   >
-                    {'info@example.ru\r'}
+                    {COMPANY.email}
                   </a>
                 </div>
               </div>
@@ -119,7 +120,7 @@ const Footer = () => {
                       'flex items-center justify-center'
                       }
                     >
-                      <MessageCircle size={20} />
+                      <TelegramIcon size={20} />
                     </a>
                   ))
                 }

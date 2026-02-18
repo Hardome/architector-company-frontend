@@ -50,7 +50,7 @@ const pVariants = cva('', {
     variant: {
       default: '',
       muted: 'text-muted-foreground',
-      price: 'text-3xl font-bold text-secondary',
+      price: 'text-3xl font-bold text-muted-foreground',
       small: 'text-xs text-gray-500 text-center',
       body: 'lg:text-xl leading-relaxed text-light-text whitespace-pre-line ' +
         'font-houschka text-center lg:text-left'

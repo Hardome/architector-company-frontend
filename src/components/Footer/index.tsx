@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import {Mail, MapPin, Phone} from 'lucide-react';
 
 import ContactDialog from '@/components/ContactDialog';
+import MaxIcon from '@/components/icons/MaxIcon';
 import TelegramIcon from '@/components/icons/TelegramIcon';
 import {Button} from '@/components/ui/button';
 import {H3} from '@/components/ui/typography';
@@ -17,7 +18,7 @@ const documents = [
 ];
 
 const messengers = [
-  // {href: 'https://wa.me/', label: 'Max'},
+  {href: COMPANY.maxHref, label: 'Max'},
   {href: COMPANY.tgHref, label: 'Telegram'}
 ];
 
@@ -120,7 +121,11 @@ const Footer = () => {
                       'flex items-center justify-center'
                       }
                     >
-                      <TelegramIcon size={20} />
+                      {
+                        messenger.label === 'Max' ?
+                          <MaxIcon size={20} /> :
+                          <TelegramIcon size={20} />
+                      }
                     </a>
                   ))
                 }

@@ -17,6 +17,7 @@ export const COMPANY = {
   phone: '+7 (922) 258-20-02', // 8 922 258 20 02
   phoneHref: 'tel:+79222582002',
   email: 'info@architectorcompany.ru',
-  tgHref: 'https://t.me/+79222582002'
+  tgHref: 'https://t.me/+79222582002',
+  maxHref: 'https://max.ru/u/f9LHodD0cOKZ4NzUhZuwXWQDWkqqB7HQIf1p4xoiSXaRj547dE_59nXZxMU'
 } as const;
 

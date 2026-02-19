@@ -149,7 +149,7 @@ const Footer = () => {
               'text-center text-sm text-primary-foreground/60'
             }
           >
-            <p>{'© 2025 ELLORIA. Все права защищены.'}</p>
+            <p>{`© ${new Date().getFullYear()} ELLORIA. Все права защищены.`}</p>
           </div>
         </div>
       </footer>

@@ -6,8 +6,8 @@ const mediaItems = [
   {src: '/topPerspective.webp', alt: 'Вид сверху на поселок', type: 'image'},
   {src: '/topPerspective2.webp', alt: 'Жизнь в поселке', type: 'image'},
   {src: '/architecture.webp', alt: 'Архитектура домов', type: 'image'},
-  {src: '/road3.webp', alt: 'Сервисы поселка', type: 'image'},
-  {src: '/garden.webp', alt: 'Природа и парк', type: 'image'}
+  {src: '/road3.webp', alt: 'Сервисы поселка', type: 'image'}
+  // {src: '/garden.webp', alt: 'Природа и парк', type: 'image'}
   // {src: '/house.png', alt: 'Проект дома 1', type: 'image'}
   // {src: '/house.png', alt: 'Проект дома 2', type: 'image'}
 ];

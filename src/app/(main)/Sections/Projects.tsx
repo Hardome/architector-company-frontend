@@ -173,14 +173,14 @@ const ProjectsSection = () => {
         </div>
 
         {/* Map Placeholder */}
-        <div className={'mt-16 rounded-2xl overflow-hidden shadow-medium'}>
+        {/* <div className={'mt-16 rounded-2xl overflow-hidden shadow-medium'}>
           <div className={'aspect-video bg-muted flex items-center justify-center'}>
             <div className={'text-center space-y-2'}>
               <MapPin className={'mx-auto text-muted-foreground'} size={48} />
               <P variant={'muted'}>{'Интерактивная карта поселка'}</P>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Contact Modal */}

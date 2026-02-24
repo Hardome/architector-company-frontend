@@ -10,12 +10,12 @@ import {Button} from '@/components/ui/button';
 import {H3} from '@/components/ui/typography';
 import {COMPANY} from '@/lib/constants';
 
-const documents = [
-  {name: 'Проектная декларация', url: '#'},
-  {name: 'Разрешение на строительство', url: '#'},
-  {name: 'Договор долевого участия', url: '#'},
-  {name: 'Градостроительный план', url: '#'}
-];
+// const documents = [
+//   {name: 'Проектная декларация', url: '#'},
+//   {name: 'Разрешение на строительство', url: '#'},
+//   {name: 'Договор долевого участия', url: '#'},
+//   {name: 'Градостроительный план', url: '#'}
+// ];
 
 const messengers = [
   {href: COMPANY.maxHref, label: 'Max'},
@@ -44,7 +44,7 @@ const Footer = () => {
             </div>
 
             {/* Documents */}
-            <div id={'documents'} className={'space-y-4'}>
+            {/* <div id={'documents'} className={'space-y-4'}>
               <H3 variant={'footer'}>{'Документы'}</H3>
               <ul className={'space-y-2'}>
                 {
@@ -65,7 +65,7 @@ const Footer = () => {
                   ))
                 }
               </ul>
-            </div>
+            </div> */}
 
             {/* Contacts */}
             <address id={'contacts'} className={'space-y-4 not-italic'}>

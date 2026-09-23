@@ -1,6 +1,10 @@
+import {useRouter} from 'next/navigation';
+
 const HEADER_HEIGHT = 72 as const;
 
 export default function useScrollToSection() {
+  const router = useRouter();
+
   return (id: string) => {
     const element = document.getElementById(id);
 
@@ -10,7 +14,7 @@ export default function useScrollToSection() {
 
       window.scrollTo({top: offsetPosition, behavior: 'smooth'});
     } else {
-      window.location.assign(`/#${id}`);
+      router.push(`/#${id}`);
     }
   };
 };

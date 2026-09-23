@@ -69,17 +69,17 @@ export default function AboutSection() {
                 </div>
                 <div
                   className={
-                    'lg:aspect-[2/1] rounded-2xl overflow-hidden shadow-medium ' +
+                    'relative aspect-[3/2] lg:aspect-[2/1] rounded-2xl ' +
+                    'overflow-hidden shadow-medium ' +
                     'lg:w-1/2 lg:min-h-[480px]'
                   }
                 >
                   <Image
                     src={item.image}
                     alt={item.alt}
-                    width={720}
-                    height={480}
+                    fill={true}
                     className={
-                      'w-full h-full object-cover hover:scale-105 ' +
+                      'object-cover hover:scale-105 ' +
                       'transition-transform duration-500'
                     }
                     sizes={'(max-width: 1024px) 100vw, 50vw'}

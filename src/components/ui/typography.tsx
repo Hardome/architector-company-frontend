@@ -7,41 +7,29 @@ import {cn} from '@/lib/utils';
 const h1Variants = cva('scroll-m-20 tracking-tight', {
   variants: {
     variant: {
-      default: 'text-4xl font-extrabold lg:text-5xl',
-      hero: 'md:text-5xl lg:text-7xl font-bold text-white drop-shadow-lg ' +
+      hero: 'md:text-5xl lg:text-7xl text-white drop-shadow-lg ' +
         'text-balance font-normal whitespace-pre-line',
       page: 'text-4xl font-bold'
     }
-  },
-  defaultVariants: {
-    variant: 'default'
   }
 });
 
 const h2Variants = cva('scroll-m-20 tracking-tight first:mt-0', {
   variants: {
     variant: {
-      default: 'py-2 text-3xl font-semibold',
       section: 'text-3xl lg:text-5xl text-center font-normal',
       card: 'text-3xl lg:text-5xl text-center lg:mb-12 font-medium'
     }
-  },
-  defaultVariants: {
-    variant: 'default'
   }
 });
 
 const h3Variants = cva('scroll-m-20 tracking-tight', {
   variants: {
     variant: {
-      default: 'text-2xl font-semibold',
       footer: 'text-xl font-bold',
       footerLarge: 'text-2xl font-bold',
       card: 'text-2xl lg:text-3xl font-normal'
     }
-  },
-  defaultVariants: {
-    variant: 'default'
   }
 });
 
@@ -49,9 +37,7 @@ const pVariants = cva('', {
   variants: {
     variant: {
       default: '',
-      muted: 'text-muted-foreground',
       price: 'text-3xl font-bold text-muted-foreground',
-      small: 'text-xs text-gray-500 text-center',
       body: 'lg:text-xl leading-relaxed text-light-text whitespace-pre-line ' +
         'font-houschka text-center lg:text-left'
     }
@@ -61,16 +47,12 @@ const pVariants = cva('', {
   }
 });
 
-const leadVariants = cva('text-xl text-muted-foreground', {
+const leadVariants = cva('text-xl', {
   variants: {
     variant: {
-      default: '',
-      hero: 'md:text-2xl lg:text-2xl text-white/95 drop-shadow-md ' +
+      hero: 'md:text-2xl text-white/95 drop-shadow-md ' +
         'text-balance font-light font-houschka'
     }
-  },
-  defaultVariants: {
-    variant: 'default'
   }
 });
 

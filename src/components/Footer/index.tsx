@@ -2,6 +2,7 @@
 
 import React, {useState} from 'react';
 import {Mail, MapPin, Phone} from 'lucide-react';
+import Link from 'next/link';
 
 import ContactDialog from '@/components/ContactDialog';
 import MaxIcon from '@/components/icons/MaxIcon';
@@ -9,13 +10,6 @@ import TelegramIcon from '@/components/icons/TelegramIcon';
 import {Button} from '@/components/ui/button';
 import {H3} from '@/components/ui/typography';
 import {COMPANY} from '@/lib/constants';
-
-// const documents = [
-//   {name: 'Проектная декларация', url: '#'},
-//   {name: 'Разрешение на строительство', url: '#'},
-//   {name: 'Договор долевого участия', url: '#'},
-//   {name: 'Градостроительный план', url: '#'}
-// ];
 
 const messengers = [
   {href: COMPANY.maxHref, label: 'Max'},
@@ -29,7 +23,7 @@ const Footer = () => {
     <React.Fragment>
       <footer className={'bg-secondary text-primary-foreground pt-20 pb-8'}>
         <div className={'container mx-auto px-4 lg:px-8'}>
-          <div className={'grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12'}>
+          <div className={'grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12'}>
             {/* About Company */}
             <div className={'space-y-4'}>
               <H3 variant={'footerLarge'}>{'ELLORIA'}</H3>
@@ -42,30 +36,6 @@ const Footer = () => {
                 {COMPANY.inn && ` ИНН ${COMPANY.inn}`}
               </p>
             </div>
-
-            {/* Documents */}
-            {/* <div id={'documents'} className={'space-y-4'}>
-              <H3 variant={'footer'}>{'Документы'}</H3>
-              <ul className={'space-y-2'}>
-                {
-                  documents.map((doc) => (
-                    <li key={doc.name}>
-                      <a
-                        href={doc.url}
-                        target={'_blank'}
-                        rel={'noopener noreferrer'}
-                        className={
-                          'text-sm text-primary-foreground/80 ' +
-                          'hover:text-primary-foreground transition-colors underline'
-                        }
-                      >
-                        {doc.name}
-                      </a>
-                    </li>
-                  ))
-                }
-              </ul>
-            </div> */}
 
             {/* Contacts */}
             <address id={'contacts'} className={'space-y-4 not-italic'}>
@@ -115,6 +85,7 @@ const Footer = () => {
                       href={messenger.href}
                       target={'_blank'}
                       rel={'noopener noreferrer'}
+                      aria-label={`Написать в ${messenger.label}`}
                       className={
                         'w-10 h-10 rounded-full bg-primary-foreground/10 ' +
                       'hover:bg-primary-foreground/20 transition-colors ' +
@@ -150,6 +121,23 @@ const Footer = () => {
             }
           >
             <p>{`© ${new Date().getFullYear()} ELLORIA. Все права защищены.`}</p>
+            <nav
+              aria-label={'Документы о персональных данных'}
+              className={'mt-2 flex flex-wrap justify-center gap-x-6 gap-y-2'}
+            >
+              <Link
+                href={'/privacy'}
+                className={'underline underline-offset-4 hover:text-primary-foreground'}
+              >
+                {'Политика обработки персональных данных'}
+              </Link>
+              <Link
+                href={'/consent'}
+                className={'underline underline-offset-4 hover:text-primary-foreground'}
+              >
+                {'Согласие на обработку персональных данных'}
+              </Link>
+            </nav>
           </div>
         </div>
       </footer>

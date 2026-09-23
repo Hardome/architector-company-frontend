@@ -9,7 +9,6 @@ const DialogMediaSlider = dynamic(() => import('@/components/DialogMediaSlider')
 interface MediaItem {
   src: string;
   alt: string;
-  type: string;
 }
 
 interface MediaGalleryGridProps {
@@ -27,13 +26,17 @@ const MediaGalleryGrid = ({mediaItems}: MediaGalleryGridProps) => {
       <div className={'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'}>
         {
           mediaItems.map((item, index) => (
-            <div
+            <button
               key={item.src}
+              type={'button'}
               className={
                 'group aspect-square rounded-lg overflow-hidden ' +
-                'shadow-soft hover:shadow-medium transition-all duration-300 cursor-pointer'
+                'shadow-soft hover:shadow-medium transition-all duration-300 cursor-pointer ' +
+                'focus-visible:outline-2 focus-visible:outline-offset-2 ' +
+                'focus-visible:outline-primary'
               }
               onClick={() => openLightbox(index)}
+              aria-label={`Открыть изображение: ${item.alt}`}
             >
               <Image
                 src={item.src}
@@ -45,7 +48,7 @@ const MediaGalleryGrid = ({mediaItems}: MediaGalleryGridProps) => {
                   'transition-transform duration-300'
                 }
               />
-            </div>
+            </button>
           ))
         }
       </div>
@@ -60,8 +63,6 @@ const MediaGalleryGrid = ({mediaItems}: MediaGalleryGridProps) => {
             currentIndex={lightboxIndex}
             onClose={closeLightbox}
             onThumbnailClick={openLightbox}
-            showThumbnails={true}
-            showCounter={true}
           />
         )
       }

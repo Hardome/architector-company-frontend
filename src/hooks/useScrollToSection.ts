@@ -9,6 +9,8 @@ export default function useScrollToSection() {
       const offsetPosition = elementPosition + window.pageYOffset - HEADER_HEIGHT;
 
       window.scrollTo({top: offsetPosition, behavior: 'smooth'});
+    } else {
+      window.location.assign(`/#${id}`);
     }
   };
 };

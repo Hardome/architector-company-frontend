@@ -13,7 +13,7 @@ import 'swiper/css/thumbs';
 import 'swiper/css/zoom';
 
 import {Button} from '@/components/ui/button';
-import {Dialog, DialogOverlay, DialogPortal} from '@/components/ui/dialog';
+import {Dialog, DialogContent, DialogDescription, DialogTitle} from '@/components/ui/dialog';
 
 const ZOOM_STEPS = [1, 1.25, 1.5, 2, 2.5, 3] as const;
 const MIN_ZOOM = ZOOM_STEPS[0];
@@ -28,23 +28,18 @@ interface DialogMediaSliderProps {
   images: ImageItem[];
   currentIndex: number;
   onClose: () => void;
-  onThumbnailClick?: (index: number) => void;
-  showThumbnails?: boolean;
-  showCounter?: boolean;
+  onThumbnailClick: (index: number) => void;
 }
 
 const DialogMediaSlider = ({
   images,
   currentIndex,
   onClose,
-  onThumbnailClick,
-  showThumbnails = true,
-  showCounter = true
+  onThumbnailClick
 }: DialogMediaSliderProps) => {
   const [thumbs, setThumbs] = useState<SwiperType | null>(null);
   const [zoomScale, setZoomScale] = useState(1);
   const mainSwiperRef = useRef<SwiperType | null>(null);
-  const isOpen = currentIndex !== null && currentIndex !== undefined && currentIndex >= 0;
 
   const zoomIn = () => {
     const swiper = mainSwiperRef.current;
@@ -81,30 +76,17 @@ const DialogMediaSlider = ({
   useEffect(() => {
     if (
       mainSwiperRef.current &&
-      isOpen &&
       currentIndex >= 0 &&
       currentIndex < images.length
     ) {
       mainSwiperRef.current.slideTo(currentIndex);
     }
-  }, [currentIndex, isOpen, images.length]);
-
-  useEffect(() => {
-    if (!isOpen) {
-      mainSwiperRef.current = null;
-      /* eslint-disable react-hooks/set-state-in-effect -- reset on close */
-      setZoomScale(1);
-      setThumbs(null);
-      /* eslint-enable react-hooks/set-state-in-effect */
-    }
-  }, [isOpen]);
+  }, [currentIndex, images.length]);
 
   const handleSlideChange = (swiper: SwiperType) => {
     const newIndex = swiper.activeIndex;
 
-    if (onThumbnailClick) {
-      onThumbnailClick(newIndex);
-    }
+    onThumbnailClick(newIndex);
   };
 
   const handleSwiperInit = (swiper: SwiperType) => {
@@ -117,174 +99,150 @@ const DialogMediaSlider = ({
     });
   };
 
-  if (!isOpen) {
-    return null;
-  }
-
   return (
     <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
-      <DialogPortal data-slot={'dialog-portal'}>
-        <DialogOverlay />
-        <div className={'fixed inset-0 z-[1000] bg-black/90 flex flex-col h-dvh'}>
-          {/* header */}
-          {
-            showCounter && (
-              <div className={'flex justify-between items-center p-4 text-white'}>
-                <span>
-                  {currentIndex + 1}
-                  {' / '}
-                  {images.length}
-                </span>
-                <div className={'flex items-center gap-1'}>
-                  <Button
-                    variant={'ghost'}
-                    size={'icon'}
-                    onClick={zoomOut}
-                    disabled={zoomScale <= MIN_ZOOM}
-                    className={'text-white'}
-                    aria-label={'Уменьшить'}
-                  >
-                    <ZoomOut />
-                  </Button>
-                  <Button
-                    variant={'ghost'}
-                    size={'icon'}
-                    onClick={zoomIn}
-                    disabled={zoomScale >= MAX_ZOOM}
-                    className={'text-white'}
-                    aria-label={'Увеличить'}
-                  >
-                    <ZoomIn />
-                  </Button>
-                  <Button variant={'ghost'} size={'icon'} onClick={onClose}>
-                    <X />
-                  </Button>
-                </div>
-              </div>
-            )
-          }
-          {
-            !showCounter && (
-              <div className={'flex justify-end items-center gap-1 p-4'}>
-                <Button
-                  variant={'ghost'}
-                  size={'icon'}
-                  onClick={zoomOut}
-                  disabled={zoomScale <= MIN_ZOOM}
-                  className={'text-white'}
-                  aria-label={'Уменьшить'}
-                >
-                  <ZoomOut />
-                </Button>
-                <Button
-                  variant={'ghost'}
-                  size={'icon'}
-                  onClick={zoomIn}
-                  disabled={zoomScale >= MAX_ZOOM}
-                  className={'text-white'}
-                  aria-label={'Увеличить'}
-                >
-                  <ZoomIn />
-                </Button>
-                <Button
-                  variant={'ghost'}
-                  size={'icon'}
-                  onClick={onClose}
-                  className={'text-white'}
-                >
-                  <X />
-                </Button>
-              </div>
-            )
-          }
+      <DialogContent
+        className={
+          'inset-0 top-0 left-0 z-[1000] flex h-dvh w-full max-w-none sm:max-w-none ' +
+          'translate-x-0 translate-y-0 flex-col gap-0 rounded-none border-0 bg-black/90 p-0'
+        }
+      >
+        <DialogTitle className={'sr-only'}>{'Просмотр изображений'}</DialogTitle>
+        <DialogDescription className={'sr-only'}>
+          {'Используйте стрелки для переключения изображений, Escape для закрытия.'}
+        </DialogDescription>
+        {/* header */}
+        <div className={'flex justify-between items-center p-4 text-white'}>
+          <span>
+            {currentIndex + 1}
+            {' / '}
+            {images.length}
+          </span>
+          <div className={'flex items-center gap-1'}>
+            <Button
+              variant={'ghost'}
+              size={'icon'}
+              onClick={zoomOut}
+              disabled={zoomScale <= MIN_ZOOM}
+              className={'text-white'}
+              aria-label={'Уменьшить'}
+            >
+              <ZoomOut />
+            </Button>
+            <Button
+              variant={'ghost'}
+              size={'icon'}
+              onClick={zoomIn}
+              disabled={zoomScale >= MAX_ZOOM}
+              className={'text-white'}
+              aria-label={'Увеличить'}
+            >
+              <ZoomIn />
+            </Button>
+            <Button
+              variant={'ghost'}
+              size={'icon'}
+              onClick={onClose}
+              aria-label={'Закрыть галерею'}
+            >
+              <X />
+            </Button>
+          </div>
+        </div>
 
-          {/* main swiper */}
-          <div className={'relative flex-1'}>
-            <Swiper
-              modules={[Navigation, Thumbs, Zoom, Keyboard]}
-              navigation={true}
-              thumbs={{swiper: thumbs}}
-              zoom={
-                {
-                  maxRatio: MAX_ZOOM,
-                  minRatio: MIN_ZOOM,
-                  panOnMouseMove: false
-                }
+        {/* main swiper */}
+        <div className={'relative flex-1'}>
+          <Swiper
+            modules={[Navigation, Thumbs, Zoom, Keyboard]}
+            navigation={true}
+            thumbs={{swiper: thumbs}}
+            zoom={
+              {
+                maxRatio: MAX_ZOOM,
+                minRatio: MIN_ZOOM,
+                panOnMouseMove: false
               }
-              keyboard={true}
-              initialSlide={currentIndex}
-              onSwiper={handleSwiperInit}
-              onSlideChange={handleSlideChange}
-              className={'h-full'}
-              style={
+            }
+            keyboard={true}
+            initialSlide={currentIndex}
+            onSwiper={handleSwiperInit}
+            onSlideChange={handleSlideChange}
+            className={'h-full'}
+            style={
               {
                 '--swiper-theme-color': '#fff'
               } as React.CSSProperties
-              }
-            >
-              {
-                images.map((item) => (
-                  <SwiperSlide key={item.src}>
-                    <div
-                      className={
-                        'swiper-zoom-container relative flex items-center justify-center h-full'
-                      }
-                    >
-                      <Image
-                        src={item.src}
-                        alt={item.alt || ''}
-                        fill={true}
-                        sizes={'100vw'}
-                        className={'object-contain select-none'}
-                      />
-                    </div>
-                  </SwiperSlide>
-                ))
-              }
-            </Swiper>
-          </div>
-          {/* thumbs */}
-          {
-            showThumbnails && (
-              <div className={'p-2'}>
-                <Swiper
-                  modules={[Thumbs]}
-                  onSwiper={setThumbs}
-                  slidesPerView={'auto'}
-                  spaceBetween={8}
-                  watchSlidesProgress={true}
-                  className={'h-20 w-fit'}
-                >
-                  {
-                    images.map((item, index) => (
-                      <SwiperSlide
-                        key={item.src}
-                        className={
-                          `
+            }
+          >
+            {
+              images.map((item) => (
+                <SwiperSlide key={item.src}>
+                  <div
+                    className={
+                      'swiper-zoom-container relative flex items-center justify-center h-full'
+                    }
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.alt || ''}
+                      fill={true}
+                      sizes={'100vw'}
+                      className={'object-contain select-none'}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))
+            }
+          </Swiper>
+        </div>
+        {/* thumbs */}
+        <div className={'p-2'}>
+          <Swiper
+            modules={[Thumbs]}
+            onSwiper={setThumbs}
+            slidesPerView={'auto'}
+            spaceBetween={8}
+            watchSlidesProgress={true}
+            className={'h-20 w-fit'}
+          >
+            {
+              images.map((item, index) => (
+                <SwiperSlide
+                  key={item.src}
+                  className={
+                    `
                           !w-auto
                           [&.swiper-slide-thumb-active]:border-3
                           [&.swiper-slide-thumb-active]:border-primary
                           [&.swiper-slide-thumb-active]:rounded
                           `
-                        }
-                        onClick={() => onThumbnailClick?.(index)}
-                      >
-                        <Image
-                          src={item.src}
-                          alt={item.alt || ''}
-                          className={'object-cover h-full rounded cursor-pointer select-none'}
-                          width={80}
-                          height={80}
-                        />
-                      </SwiperSlide>
-                    ))
                   }
-                </Swiper>
-              </div>
-            )
-          }
+                >
+                  <button
+                    type={'button'}
+                    onClick={() => onThumbnailClick(index)}
+                    aria-label={`Показать изображение ${index + 1}: ${item.alt}`}
+                    aria-current={currentIndex === index ? 'true' : undefined}
+                    className={
+                      'block size-20 rounded cursor-pointer ' +
+                            'focus-visible:outline-2 focus-visible:outline-offset-2 ' +
+                            'focus-visible:outline-primary'
+                    }
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.alt || ''}
+                      className={'object-cover h-full rounded select-none'}
+                      width={80}
+                      height={80}
+                    />
+                  </button>
+                </SwiperSlide>
+              ))
+            }
+          </Swiper>
         </div>
-      </DialogPortal>
+      </DialogContent>
     </Dialog>
   );
 };

@@ -74,11 +74,15 @@ export default function HeaderClient() {
               </a>
               <ChooseHouseButton size={'lg'} className={'hidden lg:flex rounded-full'} />
               <Button
+                id={'mobile-menu-toggle'}
                 onClick={toggleMobileMenu}
                 variant={'text'}
                 size={'lg'}
                 className={'lg:hidden p-2 text-white hover:text-gray-300 transition-colors'}
-                title={'Список навигации'}
+                title={isMobileMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
+                aria-label={isMobileMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
+                aria-expanded={isMobileMenuOpen}
+                aria-controls={'mobile-menu-panel'}
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </Button>

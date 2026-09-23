@@ -10,8 +10,6 @@ export default function Home() {
       <AboutSection />
       <MediaSection />
       <ProjectsSection />
-      {/*HowToBuySection />
-      <DocumentsSection /> */}
     </main>
   );
 }

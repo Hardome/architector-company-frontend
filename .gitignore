@@ -9,7 +9,6 @@
 !.yarn/versions
 
 # pnpm
-pnpm-lock.yaml
 .pnpm-store
 
 # testing

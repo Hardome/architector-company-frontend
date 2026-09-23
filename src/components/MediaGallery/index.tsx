@@ -32,40 +32,44 @@ const MediaGallery = ({images}: MediaGalleryProps) => {
       >
         {
           images.map((image, i) => (
-            <SwiperSlide key={image.src}>
-              <Image
-                src={image.src}
-                alt={image.alt || ''}
-                fill={true}
-                sizes={'(max-width: 768px) 100vw, 50vw'}
-                className={'object-cover cursor-pointer select-none'}
+            <SwiperSlide key={image.src} className={'relative'}>
+              <button
+                type={'button'}
+                className={
+                  'absolute inset-0 size-full cursor-pointer ' +
+                  'focus-visible:outline-2 focus-visible:outline-offset-[-4px] ' +
+                  'focus-visible:outline-primary'
+                }
+                aria-label={`Открыть изображение: ${image.alt}`}
                 onClick={
                   () => {
                     setActive(i);
                     setOpen(true);
                   }
                 }
-              />
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt || ''}
+                  fill={true}
+                  sizes={'(max-width: 768px) 100vw, 50vw'}
+                  className={'object-cover select-none'}
+                />
+              </button>
             </SwiperSlide>
           ))
         }
       </Swiper>
-      <DialogMediaSlider
-        images={images}
-        currentIndex={open ? active : -1}
-        onClose={
-          () => {
-            setOpen(false);
-          }
-        }
-        onThumbnailClick={
-          (index) => {
-            setActive(index);
-          }
-        }
-        showThumbnails={true}
-        showCounter={true}
-      />
+      {
+        open && (
+          <DialogMediaSlider
+            images={images}
+            currentIndex={active}
+            onClose={() => setOpen(false)}
+            onThumbnailClick={setActive}
+          />
+        )
+      }
     </React.Fragment>
   );
 };

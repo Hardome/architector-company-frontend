@@ -13,13 +13,11 @@ body {
   --primary: hsl(223.8136 -172.5242% 100.0000%);
   --primary-foreground: hsl(0 0% 0%);
   --secondary: #898D91;
-  --secondary-foreground: hsl(223.8136 -172.5242% 100.0000%);
   --muted: hsl(223.8136 0.0000% 11.3040%);
   --muted-foreground: hsl(223.8136 0.0000% 64.4710%);
   --accent: hsl(223.8136 0.0000% 19.8916%);
   --accent-foreground: hsl(223.8136 -172.5242% 100.0000%);
   --destructive: hsl(359.9132 100.2494% 67.8807%);
-  --destructive-foreground: hsl(0 0% 0%);
   --border: hsl(223.8136 0.0000% 14.0871%);
   --input: hsl(223.8136 0.0000% 19.8916%);
   --ring: hsl(223.8136 0.0000% 64.4710%);
@@ -28,11 +26,7 @@ body {
   --font-mono: 'Courier New', Courier, monospace;
   --radius: 0.5rem;
   --shadow-xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.09);
-  --shadow-sm: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 1px 2px -1px hsl(0 0% 0% / 0.18);
-  --shadow-md: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 2px 4px -1px hsl(0 0% 0% / 0.18);
   --shadow-lg: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 4px 6px -1px hsl(0 0% 0% / 0.18);
-  --shadow-xl: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 8px 10px -1px hsl(0 0% 0% / 0.18);
-  --shadow-2xl: 0px 1px 2px 0px hsl(0 0% 0% / 0.45);
   --shadow-soft: 0px 2px 8px 0px hsl(0 0% 0% / 0.12);
   --shadow-medium: 0px 4px 12px 0px hsl(0 0% 0% / 0.15);
   --light-text: rgb(168, 168, 168);
@@ -48,13 +42,11 @@ body {
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -69,11 +61,7 @@ body {
   --radius-xl: calc(var(--radius) + 4px);
 
   --shadow-xs: var(--shadow-xs);
-  --shadow-sm: var(--shadow-sm);
-  --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
-  --shadow-xl: var(--shadow-xl);
-  --shadow-2xl: var(--shadow-2xl);
   --shadow-soft: var(--shadow-soft);
   --shadow-medium: var(--shadow-medium);
 }
@@ -85,4 +73,22 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@keyframes mobile-menu-enter {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes mobile-menu-exit {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+.mobile-menu-panel[data-state='open'] {
+  animation: mobile-menu-enter 280ms ease-out both;
+}
+
+.mobile-menu-panel[data-state='closed'] {
+  animation: mobile-menu-exit 220ms ease-in both;
 }

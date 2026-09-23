@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import {Home, MapPin} from 'lucide-react';
+import {Home} from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 import ContactDialog from '@/components/ContactDialog';
@@ -29,40 +29,28 @@ const projects = [
     id: 1,
     name: 'Проект «Willow Breeze»',
     area: 291.1,
-    // rooms: 4,
     price: 'от 34 900 000 ₽',
-    // features: ['Панорамное остекление', 'Терраса 40 м²', 'Гараж на 2 авто'],
-    // readyDate: 'IV квартал 2025',
     images: generateProjectImages('WillowBreeze', 26, 'Willow Breeze')
   },
   {
     id: 2,
     name: 'Проект «Serenity»',
     area: 147.3,
-    // rooms: 3,
     price: 'от 17 600 000 ₽',
-    // features: ['Плоская крыша', 'Патио', 'Умный дом'],
-    // readyDate: 'II квартал 2026',
     images: generateProjectImages('Serenity', 16, 'Serenity')
   },
   {
     id: 3,
     name: 'Проект «Sunnybrook»',
     area: 152,
-    // rooms: 3,
     price: 'от 18 200 000 ₽',
-    // features: ['Плоская крыша', 'Патио', 'Умный дом'],
-    // readyDate: 'II квартал 2026',
     images: generateProjectImages('Sunnybrook', 33, 'Sunnybrook')
   },
   {
     id: 4,
     name: 'Проект «Hilltop»',
     area: 265.4,
-    // rooms: 3,
     price: 'от 25 800 000 ₽',
-    // features: ['Плоская крыша', 'Патио', 'Умный дом'],
-    // readyDate: 'II квартал 2026',
     images: generateProjectImages('Hilltop', 19, 'Hilltop')
   },
   {
@@ -110,41 +98,6 @@ const ProjectsSection = () => {
                     <Home size={24} />
                     <P className={'text-2xl font-bold'}>{project.area}{' м²'}</P>
                   </div>
-                  {/* <div className={'grid grid-cols-2 gap-4 text-sm'}> */}
-                  {/* // <div className={'flex items-center gap-2 text-muted-foreground'}>
-                    //   <LayoutDashboard size={18} />
-                    //    <P>{project.rooms}{' комнаты'}</P>
-                    // </div>
-                    //  <div
-                    //   className={
-                    //     'flex items-center gap-2 text-muted-foreground col-span-2'
-                    //   }
-                    // >
-                    //   <Calendar size={18} />
-                    //   <P>
-                    //     {'Готовность: '}
-                    //     {project.readyDate}
-                    //   </P>
-                    // </div> */}
-                  {/* </div> */}
-
-                  {/* <div className={'space-y-2'}>
-                    <P className={'font-semibold text-muted-foreground'}>
-                      {'На территории:\r'}
-                    </P>
-                    <ul className={'space-y-1 text-sm'}>
-                      {
-                        project.features.map((feature) => (
-                          <li key={feature} className={'flex items-center gap-2'}>
-                            <div
-                              className={'w-1.5 h-1.5 rounded-full bg-primary'}
-                            />
-                            <P>{feature}</P>
-                          </li>
-                        ))
-                      }
-                    </ul>
-                  </div> */}
 
                   <div className={'pt-4 border-t border-border'}>
                     <P
@@ -171,16 +124,6 @@ const ProjectsSection = () => {
             ))
           }
         </div>
-
-        {/* Map Placeholder */}
-        {/* <div className={'mt-16 rounded-2xl overflow-hidden shadow-medium'}>
-          <div className={'aspect-video bg-muted flex items-center justify-center'}>
-            <div className={'text-center space-y-2'}>
-              <MapPin className={'mx-auto text-muted-foreground'} size={48} />
-              <P variant={'muted'}>{'Интерактивная карта поселка'}</P>
-            </div>
-          </div>
-        </div> */}
       </div>
 
       {/* Contact Modal */}

@@ -13,6 +13,7 @@ body {
   --primary: hsl(223.8136 -172.5242% 100.0000%);
   --primary-foreground: hsl(0 0% 0%);
   --secondary: #898D91;
+  --secondary-foreground: #18191A;
   --muted: hsl(223.8136 0.0000% 11.3040%);
   --muted-foreground: hsl(223.8136 0.0000% 64.4710%);
   --accent: hsl(223.8136 0.0000% 19.8916%);
@@ -42,6 +43,7 @@ body {
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);

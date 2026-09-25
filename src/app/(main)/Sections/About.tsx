@@ -14,6 +14,7 @@ const aboutContent = [
       'кофе в нашем коворкинге.\n\n' +
       'ELLORIA — это не просто дома. Это продуманная экосистема для жизни без суеты.',
     image: '/walkingArea.webp',
+    imageHeight: 1080,
     alt: 'Счастливая семья в поселке'
   },
   {
@@ -26,6 +27,7 @@ const aboutContent = [
       'работает сервис управления бытом: от клининга и службы доставки продуктов до вывоза ' +
       'мусора и вызова мастера. Ваше время слишком ценно, чтобы тратить его на это.',
     image: '/topPerspective3.webp',
+    imageHeight: 1080,
     alt: 'Современная архитектура домов'
   },
   {
@@ -39,6 +41,7 @@ const aboutContent = [
       'друга по имени, а дети вместе играют на безопасных улицах. Здесь рождаются настоящие ' +
       'дружбы и традиции.',
     image: '/garden.webp',
+    imageHeight: 1278,
     alt: 'Парк и природа'
   }
 ];
@@ -69,16 +72,17 @@ export default function AboutSection() {
                 </div>
                 <div
                   className={
-                    'relative aspect-[3/2] lg:aspect-[2/1] rounded-2xl ' +
-                    'overflow-hidden shadow-medium ' +
+                    'lg:aspect-[2/1] rounded-2xl overflow-hidden shadow-medium ' +
                     'lg:w-1/2 lg:min-h-[480px]'
                   }
                 >
                   <Image
                     src={item.image}
                     alt={item.alt}
-                    fill={true}
+                    width={1920}
+                    height={item.imageHeight}
                     className={
+                      'w-full h-auto aspect-[3/2] lg:aspect-auto lg:h-full ' +
                       'object-cover hover:scale-105 ' +
                       'transition-transform duration-500'
                     }

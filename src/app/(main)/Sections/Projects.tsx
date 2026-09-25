@@ -2,14 +2,11 @@
 
 import {useState} from 'react';
 import {Home} from 'lucide-react';
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
 
 import ContactDialog from '@/components/ContactDialog';
+import ProjectMedia from '@/components/ProjectMedia';
 import {Button} from '@/components/ui/button';
 import {H2, H3, P} from '@/components/ui/typography';
-
-const MediaGallery = dynamic(() => import('@/components/MediaGallery'), {ssr: false});
 
 const generateProjectImages = (
   folderName: string,
@@ -85,16 +82,7 @@ const ProjectsSection = () => {
                 itemType={'https://schema.org/Product'}
               >
                 {/* Image Gallery */}
-                <div className={'relative aspect-[4/3] overflow-hidden group'}>
-                  <Image
-                    src={project.images[0].src}
-                    alt={project.images[0].alt}
-                    fill={true}
-                    sizes={'(max-width: 768px) 100vw, 50vw'}
-                    className={'object-cover'}
-                  />
-                  <MediaGallery images={project.images} />
-                </div>
+                <ProjectMedia images={project.images} />
 
                 {/* Content */}
                 <div className={'p-6 lg:p-8'}>

@@ -21,7 +21,7 @@ const Footer = () => {
 
   return (
     <React.Fragment>
-      <footer className={'bg-secondary text-primary-foreground pt-20 pb-8'}>
+      <footer className={'bg-secondary text-secondary-foreground pt-20 pb-8'}>
         <div className={'container mx-auto px-4 lg:px-8'}>
           <div className={'grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12'}>
             {/* About Company */}
@@ -31,7 +31,7 @@ const Footer = () => {
                 {'Строительная компания с 15-летним опытом. Реализовано более 30\r'}
                 {'успешных проектов.\r'}
               </p>
-              <p className={'text-xs text-primary-foreground/60'}>
+              <p className={'text-xs text-secondary-foreground'}>
                 {COMPANY.name}
                 {COMPANY.inn && ` ИНН ${COMPANY.inn}`}
               </p>
@@ -117,7 +117,7 @@ const Footer = () => {
           <div
             className={
               'pt-8 border-t border-primary-foreground/20 ' +
-              'text-center text-sm text-primary-foreground/60'
+              'text-center text-sm text-secondary-foreground'
             }
           >
             <p>{`© ${new Date().getFullYear()} ELLORIA. Все права защищены.`}</p>

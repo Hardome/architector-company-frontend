@@ -23,8 +23,8 @@ const MediaGallery = () => (
             src={'/review.webm'}
             controls={true}
             playsInline={true}
-            poster={'/walkingArea.webp'}
-            preload={'metadata'}
+            poster={'/review-poster.webp'}
+            preload={'none'}
             className={'w-full h-full object-cover'}
             aria-label={'Видео обзор поселка ELLORIA'}
           />

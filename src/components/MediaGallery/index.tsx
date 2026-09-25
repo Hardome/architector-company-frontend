@@ -13,9 +13,10 @@ const DialogMediaSlider = dynamic(() => import('@/components/DialogMediaSlider')
 
 interface MediaGalleryProps {
   images: {src: string; alt: string}[];
+  onReady?: () => void;
 }
 
-const MediaGallery = ({images}: MediaGalleryProps) => {
+const MediaGallery = ({images, onReady}: MediaGalleryProps) => {
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -26,6 +27,7 @@ const MediaGallery = ({images}: MediaGalleryProps) => {
         modules={[Navigation]}
         navigation={true}
         onSlideChange={(s) => setActive(s.activeIndex)}
+        onSwiper={onReady}
         className={'w-full rounded-xl overflow-hidden h-full'}
         style={
           {
@@ -35,7 +37,7 @@ const MediaGallery = ({images}: MediaGalleryProps) => {
       >
         {
           images.map((image, i) => (
-            <SwiperSlide key={image.src} className={'relative'}>
+            <SwiperSlide key={image.src} className={'relative bg-card'}>
               <button
                 type={'button'}
                 className={
